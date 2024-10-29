@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "https://ws.synchroteam.com",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": "/Api/v3"
+      }
+    }
+  }
+  

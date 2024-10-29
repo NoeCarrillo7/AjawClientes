@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="img-container">
+        <img src="assets/FOTO 2.jfif">
+        <div class="overlay"></div>
+    </div>
+    <div class="login-container">
+        <h1>Crea una cuenta</h1>
+        <p>Completa los siguientes campos</p>
+        <div class="input-container">
+            <i class="fa fa-envelope icon"></i>
+            <input class="input-email" type="email" placeholder="Correo electrónico" [(ngModel)]="email" />
+        </div>
+        <div class="input-container">
+            <i class="fas fa-key"></i>
+            <input class="input-password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Contraseña"
+                [(ngModel)]="pass" />
+            <i class="fas" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="togglePasswordVisibility()"></i>
+        </div>
+        <div class="input-container">
+            <i class="fas fa-key"></i>
+            <input class="input-password-verify"
+                [type]="showPasswordVerify ? 'text' : 'password'"
+                placeholder="Verifica tu contraseña"
+                [(ngModel)]="pass_verify" />
+            <i class="fas" [ngClass]="showPasswordVerify ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="togglePasswordVerifyVisibility()"></i>
+        </div>
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input class="input-code"
+                [type]="showCode ? 'number' : 'password'"
+                placeholder="Código de seguridad"
+                [(ngModel)]="codigo" />
+            <i class="fas" [ngClass]="showCode ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="toggleCodeVisibility()"></i>
+        </div>
+
+        
+        <h6 class="text-help">*Consulta tu código con la empresa</h6>
+        <button class="submit-button" (click)="handleRegister()">Crear cuenta</button>
+        <div class="create-account">
+            <label>¿Ya tienes una cuenta? </label>
+            <a href="/" class="create-account-link">Inicia Seción</a>
+        </div>
+        <img src="assets/LOGO AJAW BLANCO.png" alt="">
+    </div>
+</div>

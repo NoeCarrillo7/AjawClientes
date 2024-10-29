@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="img-container">
+        <img src="assets/IMG.jpg">
+        <div class="overlay"></div>
+    </div>
+    <div class="login-container">
+        <h1>Bienvenido/a</h1>
+        <p>Inicia seción para continuar</p>
+        <div class="input-container">
+            <i class="fa fa-envelope icon"></i>
+            <input class="input-email" type="email" placeholder="Correo electrónico" [(ngModel)]="email" />
+        </div>
+        <div class="input-container">
+            <i class="fas fa-key"></i>
+            <input class="input-password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Contraseña"
+                [(ngModel)]="pass" />
+            <i class="fas" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="togglePasswordVisibility()"></i>
+        </div>
+        <div class="container-options">
+            <label>
+                <input type="checkbox" [(ngModel)]="rememberMe">
+                Recordarme
+            </label>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button class="submit-button" (click)="handleLogin()">Acceder</button>
+        <div class="create-account">
+            <label>¿No tienes cuenta? </label>
+            <a href="/register" class="create-account-link">Crear cuenta</a>
+        </div>
+        <img src="assets/LOGO AJAW BLANCO.png" alt="">
+    </div>
+</div>
