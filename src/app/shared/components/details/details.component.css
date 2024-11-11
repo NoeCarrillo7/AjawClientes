@@ -1,0 +1,95 @@
+/* Contenedor general */
+.container {
+    padding: 20px;
+    color: white;
+}
+
+.content-options {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-bottom: 50px;
+}
+
+.content-jobs{
+    width: 100%;
+}
+
+.content-options label {
+    font-size: 1.8em;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+select#mes {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 30px;
+    background-color: #BC891B;
+    font-size: 15px;
+    color: white;
+    width: auto;
+    text-align: center;
+}
+
+
+
+/* Estilos de la tarjeta */
+.trabajo-detalles {
+    width: 27%;
+    height: 520px;
+    background-color: rgba(255, 255, 255, 0.889);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    margin-left: 2%;
+    display: inline-block;
+    vertical-align: top;
+    font-family: sans-serif;
+
+}
+
+.detalles-titulo{
+    color: black;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.detalles-titulo h2{
+    font-family: sans-serif;
+}
+.detalles-titulo span{
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+
+/* Input de detalles */
+.trabajo-detalles label {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #353535;
+}
+
+.trabajo-detalles input[type="text"] {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 4px;
+    color: #929292;
+}
+
+.trabajo-detalles textarea {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #929292;
+    resize: none;
+}
+

@@ -1,3 +1,13 @@
+<!--
+<div *ngIf="isLoading" class="loading-container">
+  <div class="spinner"></div>
+  <h2>Recopilando información... </h2>
+  <P>Un momento por favor</P>
+  <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
+</div>
+
+*ngIf="!isLoading"
+-->
 
 <div *ngIf="isLoading" class="loading-container">
   <div class="spinner"></div>
@@ -7,27 +17,13 @@
 </div>
 
 <div *ngIf="!isLoading" class="main-container">
-    <app-nav-bar></app-nav-bar>
-  
+    <app-nav-bar style="position: fixed;"></app-nav-bar>
     <div class="content-container">
       <h1>Estadísticas generales</h1>
-  
-      <div class="stats-container">
-        <div class="chart-container">
-          <h2>Trabajos realizados</h2>
-        </div>
-        <div class="chart-container">
-          <h2>Horas trabajadas</h2>
-        </div>
-      </div>
-      <div class="stats-container2">
-        <div class="chart-container">
-          <h2>Trabajos realizados</h2>
-        </div>
-        <div class="chart-container">
-          <h2>Horas trabajadas</h2>
-        </div>
-      </div>
+        <app-charts></app-charts>
+    </div>
+    <div class="content-details">
+      <app-details></app-details>
     </div>
 </div>
 

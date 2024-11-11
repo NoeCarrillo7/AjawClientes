@@ -1,9 +1,10 @@
+
 .sidebar {
-    width: 230px;
-    height: 90%;
+    width: 250px;
+    height: 92vh;
     background-color: #0a1e4d62;
     color: white;
-    margin: 15% 10%;
+    margin: 10% 4%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

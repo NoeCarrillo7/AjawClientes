@@ -1,0 +1,36 @@
+<div class="stats-container">
+    <div class="chart-container">
+        <p class='nombre-graficas'>Trabajos realizados: {{totalTrabajos}}</p>
+        <canvas baseChart
+        [data]="trabajosPorMesData"
+        [labels]="trabajosPorMesLabels"
+        [options]="trabajosPorMesOptions"
+        [type]="trabajosPorMesType"></canvas>
+    </div>
+    <div class="chart-container">
+        <p class='nombre-graficas'>Horas trabajadas: {{totalHoras.toFixed(2)}}</p>
+        <canvas baseChart
+        [data]="horasPorMesData"
+        [labels]="horasPorMesLabels"
+        [options]="horasPorMesOptions"
+        [type]="horasPorMesType"></canvas>
+    </div>
+</div>
+<div class="stats-container2">
+    <div class="chart-container-lugares">
+        <p class='nombre-graficas'>Lugares</p>
+        <canvas baseChart
+        [data]="lugaresData"
+        [labels]="lugaresLabels"
+        [options]="lugaresOptions"
+        [type]="lugaresType"></canvas>
+    </div>
+    <div class="chart-container-horas">
+        <p class='nombre-graficas'>Tiempo por trabajo</p>
+        <canvas baseChart
+        [data]="tiempoTrabajoData"
+        [labels]="tiempoTrabajoLabels"
+        [options]="tiempoTrabajoOptions"
+        [type]="tiempoTrabajoType"></canvas>
+    </div>
+</div>

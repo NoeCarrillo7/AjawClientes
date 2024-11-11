@@ -1,0 +1,41 @@
+
+.stats-container,
+.stats-container2 {
+    width: 97%;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 30px;
+}
+
+.chart-container {
+    width: 44%;
+    height: 250px;
+    padding: 30px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.853);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+}
+.chart-container-lugares {
+    width: 20%;
+    height: 330px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.853);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+}
+.chart-container-horas {
+    width: 68%;
+    height: 330px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.853);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+}
+
+.nombre-graficas {
+    margin: 0% 0% 10px;
+    font-family: Arial, sans-serif;
+    color: #0e2472;
+    font-weight: bold;
+}

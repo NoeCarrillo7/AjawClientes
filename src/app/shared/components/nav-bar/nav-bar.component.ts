@@ -13,6 +13,7 @@ export class NavBarComponent {
   constructor(private router: Router) {}
 
   logout() {
-    this.router.navigate(['/']);
+    sessionStorage.removeItem('isAuthenticated');
+    this.router.navigate(['/login']);
   }
 }

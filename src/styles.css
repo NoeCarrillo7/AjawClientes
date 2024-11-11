@@ -1,34 +1,36 @@
 body {
     background: rgb(37, 74, 148);
-    overflow: hidden;
-    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100%;
     margin: 0;
+    position: relative;
 }
 
-/* Forma difusa hacia la parte superior */
 body::after {
     content: '';
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 30vw;
+    height: 30vw;
     background: rgb(83, 37, 141);
     border-radius: 50%;
     filter: blur(80px);
-    top: 15%;
+    top: 10%;
     left: 60%;
     transform: translate(-50%, -50%) rotate(45deg);
+    z-index: -1;
 }
 
-/* Pequeña mancha morada */
 body::before {
     content: '';
     position: absolute;
-    width: 400px;
-    height: 600px;
+    width: 35vw;
+    height: 50vh;
     background: rgba(36, 110, 147, 0.851);
     border-radius: 50%;
     filter: blur(100px);
-    top: 50%;
+    top: 45%;
     left: 70%;
     transform: translate(-50%, -50%);
+    z-index: -1;
 }
