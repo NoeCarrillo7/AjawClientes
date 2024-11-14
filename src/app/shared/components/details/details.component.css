@@ -93,3 +93,31 @@ select#mes {
     resize: none;
 }
 
+
+
+.pagination {
+    display: flex;
+    justify-content: left;
+    gap: 8px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.pagination button {
+    background-color: #ffffff00;
+    border: 1px solid #ccc;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.pagination button.active {
+    background-color: #BC891B;
+    color: #fff;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

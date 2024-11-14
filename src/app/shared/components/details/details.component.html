@@ -34,4 +34,24 @@
             <input type="text" [value]="trabajo?.tiempoTrabajado" readonly>
         </div>
     </div>
+    <div class="pagination">
+        <button (click)="cambioPagina(paginaActual - 1)" [disabled]="paginaActual === 1">‹</button>
+    
+        <button *ngIf="paginasVisibles()[0] > 1" (click)="cambioPagina(1)">1</button>
+        <span *ngIf="paginasVisibles()[0] > 2">...</span>
+    
+        <button *ngFor="let page of paginasVisibles()" 
+                [class.active]="page === paginaActual"
+                (click)="cambioPagina(page)">
+            {{ page }}
+        </button>
+    
+        <span *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas - 1">...</span>
+        <button *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas" 
+                (click)="cambioPagina(totalPaginas)">
+            {{ totalPaginas }}
+        </button>
+    
+        <button (click)="cambioPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">›</button>
+    </div>
 </div>
