@@ -23,7 +23,7 @@
             <i class="fas fa-sun"></i>
             Modo claro
         </button>
-        <button class="logout" (click)="logout()">
+        <button class="logout" (click)="openLogoutConfirm()">
             <i class="fas fa-sign-out-alt"></i>
             Cerrar sesión
         </button>
@@ -34,3 +34,8 @@
         <p>AJAW 2024©, todos los derechos reservados.</p>
     </footer>
 </nav>
+
+<app-cerrar-sesion *ngIf="showLogoutConfirm"
+    (confirm)="confirmLogout()"
+    (cancelAction)="cancelLogout()">
+</app-cerrar-sesion>
