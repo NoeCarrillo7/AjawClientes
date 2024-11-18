@@ -78,6 +78,19 @@ h2 {
   margin-left: 18%;
 }
 
+.nombre-cliente{
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 3em;
+  height: 50px;
+  margin-bottom: 5px;
+}
+.id-cliente{
+  color: #ffffffa0;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  margin-left: 3%;
+}
 
 @media (max-width: 1024px) {
   .spinner{

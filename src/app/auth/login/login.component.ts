@@ -14,17 +14,17 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   email = '';
   pass = '';
-  rememberMe = false;
-  showPassword = false;
+  recordarme = false;
+  verPassword = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
-  handleLogin() {
-    this.authService.login(this.email, this.pass).subscribe(
+  login() {
+    this.authService.loginAuth(this.email, this.pass).subscribe(
       (response) => {
         const code = response.code;
-
         sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem('rol', code === 982647035 ? 'admin' : 'client');
 
         if (code === 982647035) {
           this.router.navigate(['/admin']);
@@ -38,8 +38,7 @@ export class LoginComponent {
       }
     );
   }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  showPassword() {
+    this.verPassword = !this.verPassword;
   }
 }

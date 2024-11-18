@@ -12,7 +12,7 @@
         <div *ngFor="let trabajo of trabajos" class="trabajo-detalles">
             <div class="detalles-titulo">
                 <h2>{{trabajo?.type}}</h2>
-                <span>{{ trabajo?.actualStart }}</span>
+                <span>{{ trabajo?.dateCreated }}</span>
             </div>
 
             <label>Descripción:</label>
@@ -40,14 +40,14 @@
         <button *ngIf="paginasVisibles()[0] > 1" (click)="cambioPagina(1)">1</button>
         <span *ngIf="paginasVisibles()[0] > 2">...</span>
     
-        <button *ngFor="let page of paginasVisibles()" 
+        <button *ngFor="let page of paginasVisibles()"
                 [class.active]="page === paginaActual"
                 (click)="cambioPagina(page)">
             {{ page }}
         </button>
     
         <span *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas - 1">...</span>
-        <button *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas" 
+        <button *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas"
                 (click)="cambioPagina(totalPaginas)">
             {{ totalPaginas }}
         </button>

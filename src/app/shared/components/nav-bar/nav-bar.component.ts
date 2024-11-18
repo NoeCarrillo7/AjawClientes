@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CerrarSesionComponent } from '../cerrar-sesion/cerrar-sesion.component';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  @Output() viewChange = new EventEmitter<string>();
   showLogoutConfirm: boolean = false;
 
   constructor(private router: Router) {}
@@ -23,10 +24,17 @@ export class NavBarComponent {
     this.showLogoutConfirm = false;
     sessionStorage.removeItem('isAuthenticated');
     this.router.navigate(['/login']);
-    console.log('Sesión cerrada');
   }
 
   cancelLogout() {
     this.showLogoutConfirm = false;
+  }
+
+  showGenerales() {
+    this.viewChange.emit('generales');
+  }
+
+  showClientes() {
+    this.viewChange.emit('clientes');
   }
 }

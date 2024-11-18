@@ -33,7 +33,7 @@ export class DatosGeneralesService {
       if (mesesAtras >= 0 && mesesAtras < 12) {
         const actualStart = new Date(job.actualStart);
         const actualEnd = job.actualEnd ? new Date(job.actualEnd) : null;
-        const horasTrabajadas = actualEnd ? (actualEnd.getTime() - actualStart.getTime()) / (1000 * 60 * 60) : 0;
+        const horasTrabajadas = actualEnd ? parseFloat(((actualEnd.getTime() - actualStart.getTime()) / (1000 * 60 * 60)).toFixed(1)) : 0;
 
         const index = 11 - mesesAtras;
 

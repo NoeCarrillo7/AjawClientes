@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatosGeneralesService } from '../../../dashboard/admin/datos-generales.service';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
-import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-charts',
@@ -14,6 +13,8 @@ import { ApiService } from '../../../services/api.service';
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
+  @Input() jobs: any[] = [];
+  @Input() datosCliente: any[] = [];
   trabajosPorMes: number[] = [];
   horasPorMes: number[] = [];
   lugares: { [key: string]: number } = {};
@@ -22,12 +23,11 @@ export class ChartsComponent implements OnInit {
   totalHoras: number = 0;
 
   constructor(
-    private apiService: ApiService,
     private datosGeneralesService: DatosGeneralesService,
   ) {}
 
   // Opciones para cada gráfico
-  trabajosPorMesOptions: ChartOptions = { 
+  trabajosPorMesOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -102,73 +102,74 @@ export class ChartsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.apiService.fetchAllJobs().subscribe(
-      (data) => {
-        const processedData = this.datosGeneralesService.DatosGenerales(data);
+    let processedData: any;
     
-        this.trabajosPorMes = processedData.trabajosPorMes;
-        this.horasPorMes = processedData.horasTrabajadasPorMes;
-        this.lugares = processedData.lugares;
-        this.tiempoTrabajo = processedData.tiempoPorTrabajo;
+    if (this.jobs && this.jobs.length > 0) {
+      processedData = this.datosGeneralesService.DatosGenerales(this.jobs);
+      if (Object.keys(processedData.lugares).length > 10) this.lugares = this.groupSmallValues(processedData.lugares, 5);
+      else this.lugares = processedData.lugares;
+      
+    } else if (this.datosCliente && this.datosCliente.length > 0) {
+      processedData = this.datosGeneralesService.DatosGenerales(this.datosCliente);
+      console.log(processedData);
+      
+      if (Object.keys(processedData.lugares).length > 8) this.lugares = this.groupSmallValues(processedData.lugares, 5);
+      else this.lugares = processedData.lugares;
+      
+    } else {
+      console.error('No se encontraron datos para procesar.');
+      return;
+    }
 
-        const ultimos12Meses = this.getUltimos12Meses();
-        const threshold = 5; // Define el umbral para agrupar valores pequeños
-        this.lugares = this.groupSmallValues(this.lugares, threshold);
+    this.trabajosPorMes = processedData.trabajosPorMes;
+    this.horasPorMes = processedData.horasTrabajadasPorMes;
+    this.tiempoTrabajo = processedData.tiempoPorTrabajo;
 
-         // Calcular el total de trabajos y horas trabajadas
-        this.totalTrabajos = this.trabajosPorMes.reduce((acc, cur) => acc + cur, 0);
-        this.totalHoras = this.horasPorMes.reduce((acc, cur) => acc + cur, 0);
-  
-        // Asignar datos a las gráficas
-        this.trabajosPorMesData = {
-          ...this.trabajosPorMesData,
-          labels: ultimos12Meses,
-          datasets: [{ data: [...this.trabajosPorMes,], label: 'Número de trabajos' }]
-        };
-        this.horasPorMesData = {
-          ...this.horasPorMesData,
-          labels: ultimos12Meses,
-          datasets: [{ data: [...this.horasPorMes,], label: 'Número de horas' }]
-        };
-  
-        this.lugaresData = {
-          ...this.lugaresData,
-          labels: Object.keys(this.lugares),
-          datasets: [{ data: Object.values(this.lugares), label: 'Lugares' }]
-        };
-  
-        // Asignar los datos para la gráfica de tiempo por trabajo
-        const trabajosLabels = this.tiempoTrabajo.slice(-20).map(trabajo => trabajo.fecha.toLocaleDateString());
-        const trabajosData = this.tiempoTrabajo.slice(-20).map(trabajo => trabajo.horasTrabajadas);
-  
-        this.tiempoTrabajoData = {
-          ...this.tiempoTrabajoData,
-          labels: trabajosLabels,
-          datasets: [{
-            label: 'Horas Trabajadas',
-            data: trabajosData,
-            backgroundColor: 'rgba(153, 102, 255, 0.6)',
-            borderColor: 'rgba(153, 102, 255, 1)',
-          }]
-        };
-      },
-      (error) => {
-        console.error('Error al obtener los trabajos:', error);
-      }
-    );
+    const ultimos12Meses = this.getUltimos12Meses();
+    this.tiempoTrabajo.sort((a, b) => a.fecha.getTime() - b.fecha.getTime());
+
+    // Asigna los datos a los gráficos
+    this.trabajosPorMesData = {
+      labels: ultimos12Meses,
+      datasets: [{ data: this.trabajosPorMes, label: 'Número de trabajos' }]
+    };
+
+    this.horasPorMesData = {
+      labels: ultimos12Meses,
+      datasets: [{ data: this.horasPorMes, label: 'Número de horas' }]
+    };
+
+    this.lugaresData = {
+      labels: Object.keys(this.lugares),
+      datasets: [{ data: Object.values(this.lugares), label: 'Lugares' }]
+    };
+
+    const trabajosLabels = this.tiempoTrabajo.slice(-20).map(trabajo => trabajo.fecha.toLocaleDateString());
+    const trabajosData = this.tiempoTrabajo.slice(-20).map(trabajo => trabajo.horasTrabajadas);
+    this.tiempoTrabajoData = {
+      labels: trabajosLabels,
+      datasets: [{
+        label: 'Horas Trabajadas',
+        data: trabajosData,
+        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        borderColor: 'rgba(153, 102, 255, 1)',
+      }]
+    };
+
+    // Calcula los totales
+    this.totalTrabajos = this.trabajosPorMes.reduce((acc, cur) => acc + cur, 0);
+    this.totalHoras = this.horasPorMes.reduce((acc, cur) => acc + cur, 0);
   }
   
   // Función para agrupar valores pequeños en la categoría "Otros"
   groupSmallValues(data: { [key: string]: number }, threshold: number): { [key: string]: number } {
     const groupedData: { [key: string]: number } = {};
     let othersTotal = 0;
-
     Object.entries(data).forEach(([key, value]) => {
       if (value < threshold) othersTotal += value;
       else groupedData[key] = value;
     });
     if (othersTotal > 0) groupedData['Otros'] = othersTotal;
-
     return groupedData;
   }
 

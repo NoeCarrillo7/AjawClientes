@@ -4,40 +4,56 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "../../shared/components/nav-bar/nav-bar.component";
 import { ChartsComponent } from "../../shared/components/charts/charts.component";
 import { DetailsComponent } from '../../shared/components/details/details.component';
+import { ClientsComponent } from "../../shared/components/clients/clients.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, NavBarComponent, ChartsComponent, DetailsComponent],
-  providers: [],
+  imports: [CommonModule, NavBarComponent, ChartsComponent, DetailsComponent, ClientsComponent],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-
-
 export class AdminComponent implements OnInit {
   jobs: any[] = [];
-  isLoading: boolean = true;
+  datosCliente: any[] = [];
+  clienteFiltrado: any = null;
+  selectedClientId: number | null = null;
+  datosProcesados: any = null;
+  cargando: boolean = true;
+  showLogoutConfirm: boolean = false;
+  currentView: string = 'generales';
 
   constructor(
     private apiService: ApiService,
   ) {}
 
   ngOnInit() {
-    this.isLoading = true;
+    this.cargando = true;
     this.apiService.fetchAllJobs().subscribe(
       (data) => {
         this.jobs = data;
-        this.isLoading = false;
+        this.cargando = false;
       },
       (error) => {
         console.error('Error al obtener los trabajos:', error);
-        this.isLoading = false;
+        this.cargando = false;
       }
     );
+
     history.pushState(null, '', location.href);
     window.onpopstate = () => {
       history.pushState(null, '', location.href);
     };
   }
+
+  onViewChange(view: string) {
+    this.currentView = view;
+  }
+
+  onClientSelected(clientID: number) {
+    this.datosCliente = this.jobs.filter(job => job.customer.id === clientID);
+    if (this.datosCliente && this.datosCliente.length > 0) this.currentView = 'client';
+    console.log(this.datosCliente);
+  }
+  
 }

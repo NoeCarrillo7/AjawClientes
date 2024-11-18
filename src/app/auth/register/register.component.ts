@@ -16,25 +16,27 @@ export class RegisterComponent {
   pass = '';
   pass_verify = '';
   codigo = '';
-  showPassword = false;
-  showPasswordVerify = false;
-  showCode = false;
+  verPassword = false;
+  verPassConfirm = false;
+  verCodigo = false;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) {}
 
-  handleRegister() {
+  register() {
     if (this.pass !== this.pass_verify) {
       alert('Las contraseñas no coinciden');
       return;
     }
 
-    this.authService.register(this.email, this.pass, this.codigo).subscribe(
+    this.authService.registerAuth(this.email, this.pass, this.codigo).subscribe(
       (response) => {
-        console.log(response);
-
         console.log('Respuesta del registro:', response);
 
-        if (this.codigo === '982647035') {
+        sessionStorage.setItem('isAuthenticated', 'true');
+        const rol = parseInt(this.codigo, 10) === 982647035 ? 'admin' : 'client';
+        sessionStorage.setItem('rol', rol);
+
+        if (rol === 'admin') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/client']);
@@ -47,15 +49,15 @@ export class RegisterComponent {
     );
   }
 
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  showPassword() {
+    this.verPassword = !this.verPassword;
   }
 
-  togglePasswordVerifyVisibility() {
-    this.showPasswordVerify = !this.showPasswordVerify;
+  showPasswordConfirm() {
+    this.verPassConfirm = !this.verPassConfirm;
   }
 
-  toggleCodeVisibility() {
-    this.showCode = !this.showCode;
+  showCodigo() {
+    this.verCodigo = !this.verCodigo;
   }
 }

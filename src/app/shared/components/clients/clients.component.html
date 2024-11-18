@@ -1,0 +1,32 @@
+<div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar empresa..." [(ngModel)]="terminoBusqueda"
+        (input)="filtrarClientes()" />
+    <button class="search-button">
+        <img src="/assets/busqueda.png" alt="Buscar" />
+    </button>
+</div>
+
+<div class="cards-container">
+    <div *ngFor="let cliente of clientesPaginados" class="card" (click)="seleccionarCliente(cliente.customer.id)">
+        <img src="/assets/favicon.ico" alt="Logo Cliente" class="card-logo">
+        <h3>{{ cliente.customer.name }}</h3>
+        <p>Código de cliente: {{ cliente.customer.id }}</p>
+    </div>
+</div>
+
+<!-- Controles de Paginación -->
+<div class="pagination">
+    <div class="buttons-pagination">
+        <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">&laquo;</button>
+        <button *ngFor="let pagina of [].constructor(totalPaginas); let i = index"
+            [class.active]="paginaActual === i + 1" (click)="cambiarPagina(i + 1)">
+            {{ i + 1 }}
+        </button>
+        <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">&raquo;</button>
+    </div>
+    <div class="results-info">
+        <span>
+            Resultados: {{ rangoResultados() }} de {{ clientesFiltrados.length }}
+        </span>
+    </div>
+</div>

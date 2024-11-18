@@ -22,16 +22,23 @@
     margin-left: 20px;
 }
 
+/* Estilo base para el select */
 select#mes {
-    padding: 5px 10px;
+    padding: 5px 5px;
     border: none;
     border-radius: 4px;
     margin-left: 30px;
-    background-color: #BC891B;
+    background-color: #BC891B; /* Color de fondo cuando no está activo */
     font-size: 15px;
-    color: white;
-    width: auto;
+    color: white; /* Color de texto */
+    width: 11%;
     text-align: center;
+}
+
+/* Estilo para las opciones cuando se despliegan */
+select#mes option {
+    background-color: #cfcfcf; /* Color de fondo de las opciones cuando el select está desplegado */
+    color: black; /* Color del texto de las opciones */
 }
 
 

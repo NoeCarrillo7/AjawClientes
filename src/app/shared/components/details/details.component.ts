@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../services/api.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,9 +7,11 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './details.component.html',
-  styleUrl: './details.component.css'
+  styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  @Input() jobs: any[] = [];  // Recibe los trabajos
+  @Input() datosCliente: any[] = [];
   trabajos: any[] = [];
   mesSeleccionado: number | null = null;
   meses = Array.from({ length: 12 }, (_, i) => i);
@@ -19,18 +20,17 @@ export class DetailsComponent implements OnInit {
   itemsPorPagina: number = 6;
   totalPaginas: number = 1;
 
-
-  constructor(private apiService: ApiService) { }
+  constructor() { }
 
   ngOnInit(): void {
+    if(this.jobs && this.jobs.length > 0)
+      this.trabajosOriginales = this.jobs;
+    else
+      this.trabajosOriginales = this.datosCliente;
+
     const fechaActual = new Date();
     this.mesSeleccionado = fechaActual.getMonth();
-
-    this.apiService.fetchAllJobs().subscribe(data => {
-      this.trabajosOriginales = data;
-      this.totalPaginas = Math.ceil(data.length / this.itemsPorPagina);
-      this.filtrarTrabajosPorMes();
-    });
+    this.filtrarTrabajosPorMes();
   }
 
   filtrarTrabajosPorMes(): void {
@@ -100,6 +100,7 @@ export class DetailsComponent implements OnInit {
       })
       .map(job => {
         const actualStart = new Date(job.actualStart);
+        const dateCreated = new Date(job.dateCreated);
         const actualEnd = job.actualEnd ? new Date(job.actualEnd) : null;
         const tiempoTrabajado = actualEnd
           ? this.tiempoTrabajo(actualStart, actualEnd)
@@ -112,7 +113,7 @@ export class DetailsComponent implements OnInit {
           equipmentName: job.equipment?.name,
           technicianName: job.technician?.name,
           sitio: job.site?.name,
-          actualStart: actualStart.toLocaleDateString('es-ES', {
+          dateCreated: dateCreated.toLocaleDateString('es-ES', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'

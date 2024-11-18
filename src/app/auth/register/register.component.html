@@ -1,6 +1,6 @@
 <div class="container">
     <div class="img-container">
-        <img src="assets/REGISTRAR.jpeg">
+        <img src="assets/REGISTRO.jpeg">
         <div class="overlay"></div>
     </div>
     <div class="login-container">
@@ -13,37 +13,37 @@
         <div class="input-container">
             <i class="fas fa-key"></i>
             <input class="input-password"
-                [type]="showPassword ? 'text' : 'password'"
+                [type]="verPassword ? 'text' : 'password'"
                 placeholder="Contraseña"
                 [(ngModel)]="pass" />
-            <i class="fas" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'" 
-                (click)="togglePasswordVisibility()"></i>
+            <i class="fas" [ngClass]="verPassword ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="showPassword()"></i>
         </div>
         <div class="input-container">
             <i class="fas fa-key"></i>
             <input class="input-password-verify"
-                [type]="showPasswordVerify ? 'text' : 'password'"
+                [type]="verPassConfirm ? 'text' : 'password'"
                 placeholder="Verifica tu contraseña"
                 [(ngModel)]="pass_verify" />
-            <i class="fas" [ngClass]="showPasswordVerify ? 'fa-eye' : 'fa-eye-slash'" 
-                (click)="togglePasswordVerifyVisibility()"></i>
+            <i class="fas" [ngClass]="verPassConfirm ? 'fa-eye' : 'fa-eye-slash'" 
+                (click)="showPasswordConfirm()"></i>
         </div>
         <div class="input-container">
             <i class="fas fa-lock"></i>
             <input class="input-code"
-                [type]="showCode ? 'number' : 'password'"
+                [type]="verCodigo ? 'number' : 'password'"
                 placeholder="Código de seguridad"
                 [(ngModel)]="codigo" />
-            <i class="fas" [ngClass]="showCode ? 'fa-eye' : 'fa-eye-slash'" 
-                (click)="toggleCodeVisibility()"></i>
+            <i class="fas" [ngClass]="verCodigo ? 'fa-eye' : 'fa-eye-slash'"
+                (click)="showCodigo()"></i>
         </div>
 
         
         <h6 class="text-help">*Consulta tu código con la empresa</h6>
-        <button class="submit-button" (click)="handleRegister()">Crear cuenta</button>
+        <button class="submit-button" (click)="register()">Crear cuenta</button>
         <div class="create-account">
             <label>¿Ya tienes una cuenta? </label>
-            <a href="/login" class="create-account-link">Inicia Seción</a>
+            <a href="/login" class="create-account-link">Inicia Sesión</a>
         </div>
         <img src="assets/LOGO AJAW BLANCO.png" alt="">
     </div>

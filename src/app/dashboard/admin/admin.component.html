@@ -1,29 +1,39 @@
-<!--
-<div *ngIf="isLoading" class="loading-container">
+<div *ngIf="cargando" class="loading-container">
   <div class="spinner"></div>
   <h2>Recopilando información... </h2>
-  <P>Un momento por favor</P>
+  <p>Un momento por favor</p>
   <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
 </div>
 
-*ngIf="!isLoading"
--->
+<div *ngIf="!cargando" class="main-container">
+  <app-nav-bar (viewChange)="onViewChange($event)" style="position: fixed;"></app-nav-bar>
 
-<div *ngIf="isLoading" class="loading-container">
-  <div class="spinner"></div>
-  <h2>Recopilando información... </h2>
-  <P>Un momento por favor</P>
-  <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
+  <div class="content-container">
+    <!-- Vista de estadísticas generales -->
+    <h1 *ngIf="currentView === 'generales'">Estadísticas generales</h1>
+    <ng-container *ngIf="currentView === 'generales'">
+      <app-charts [jobs]="jobs"></app-charts>
+    </ng-container>
+
+    <!-- Vista de clientes -->
+    <ng-container *ngIf="currentView === 'clientes'">
+      <app-clients [clients]="jobs" (clienteSeleccionado)="onClientSelected($event)"></app-clients>
+    </ng-container>
+
+    <!-- Vista de gráficas para cliente seleccionado -->
+    <ng-container *ngIf="currentView === 'client'">
+      <h1 class="nombre-cliente">{{ datosCliente[0]?.customer?.name || 'Nombre del cliente no disponible' }}</h1>
+      <span class="id-cliente">Código de cliente {{datosCliente[0]?.customer?.id || 'Código del cliente no disponible'}}</span>
+      <app-charts [datosCliente]="datosCliente"></app-charts>
+    </ng-container>
+    
+  </div>
+
+  <!-- Detalles generales -->
+  <div class="content-details" *ngIf="currentView === 'generales'">
+    <app-details  [jobs]="jobs"></app-details>
+  </div>
+  <div class="content-details" *ngIf="currentView === 'client'">
+    <app-details [datosCliente]="datosCliente"></app-details>
+  </div>
 </div>
-
-<div *ngIf="!isLoading" class="main-container">
-    <app-nav-bar style="position: fixed;"></app-nav-bar>
-    <div class="content-container">
-      <h1>Estadísticas generales</h1>
-        <app-charts></app-charts>
-    </div>
-    <div class="content-details">
-      <app-details></app-details>
-    </div>
-</div>
-
