@@ -1,94 +1,118 @@
+/*Estilos Pantalla de carga*/
 .loading-container {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 1;
     padding: 20px;
-}
-
-.spinner {
+    overflow-y: hidden;
+  }
+  
+  .spinner {
     margin-top: 5%;
-    z-index: 2;
+    z-index: 1;
     border: 22px solid #ffffff90;
     border-top: 22px solid #e1e1e1;
     border-radius: 50%;
     width: 230px;
     height: 230px;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.loading-container h2 {
-    z-index: 2;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-container h2{
+    z-index: 1;
     color: #ffffff;
     font-size: 27px;
-}
-
-.loading-container p {
+  }
+  .loading-container p {
     margin-top: 0%;
     font-size: 15px;
     color: #ffffff;
-}
-
-.loading-container img {
+    z-index: 1;
+  }
+  
+  .loading-container img {
+    position: relative;
     width: 200px;
     margin-top: 20px;
-}
-
-
-
-.main-container {
+    z-index: 1;
+  }
+  /*******************************/
+  .main-container {
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-}
-
-.content-container {
-    margin: 1% 3%;
-    z-index: 2;
-    flex-grow: 1;
-}
-
-.stats-container {
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+  }
+  /********************************/
+  /*Estilos Graficas*/
+  .content-container {
+    width: auto;
+    margin-left: 18%;
+    margin-bottom: 20px;
     margin-top: 20px;
-}
-
-.stats-container2 {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.chart-container {
-    width: 45%;
-    height: 245px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 24px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
     font-family: sans-serif;
     font-weight: bold;
     color: #ffffff;
-}
-
-h2 {
+    margin-left: 3%;
+    padding: 10px;
+  }
+  
+  h2 {
     font-size: 18px;
     color: #333;
-}
+  }
+  
+  /*Estilos Detalles de trabajos*/
+  .content-details{
+    width: auto;
+    margin-left: 18%;
+  }
+  
+  .nombre-cliente{
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 3em;
+    height: 50px;
+    margin-bottom: 5px;
+  }
+  .id-cliente{
+    color: #ffffffa0;
+    font-family: sans-serif;
+    font-size: 0.8em;
+    margin-left: 3%;
+  }
+  
+  @media (max-width: 1024px) {
+    .spinner{
+      margin-top: 20%;
+    }
+  }
+  @media (max-width: 768px) {
+    .spinner{
+      margin-top: 30%;
+      width: 200px;
+      height: 200px;
+    }
+  }
+  @media (max-width: 480px) {
+    .loading-container{
+      width: 120%;
+    }
+    .spinner{
+      margin-top: 40%;
+      width: 150px;
+      height: 150px;
+    }
+  }
+  

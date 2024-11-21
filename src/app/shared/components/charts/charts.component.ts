@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,OnChanges  } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatosGeneralesService } from '../../../dashboard/admin/datos-generales.service';
+import { DatosGeneralesService } from '../../../services/datos-generales.service';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
@@ -12,7 +12,7 @@ import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnChanges  {
   @Input() jobs: any[] = [];
   @Input() datosCliente: any[] = [];
   trabajosPorMes: number[] = [];
@@ -25,6 +25,16 @@ export class ChartsComponent implements OnInit {
   constructor(
     private datosGeneralesService: DatosGeneralesService,
   ) {}
+
+  ngOnChanges() {
+    if (this.datosCliente.length > 0) {
+      this.processClientData(this.datosCliente);
+    }
+  }
+  processClientData(datos: any[]) {
+    console.log('Procesando datos del cliente:', datos);
+    // Aquí reutiliza la lógica de datos que tienes en Admin
+  }
 
   // Opciones para cada gráfico
   trabajosPorMesOptions: ChartOptions = {
@@ -126,7 +136,6 @@ export class ChartsComponent implements OnInit {
     this.tiempoTrabajo = processedData.tiempoPorTrabajo;
 
     const ultimos12Meses = this.getUltimos12Meses();
-    this.tiempoTrabajo.sort((a, b) => a.fecha.getTime() - b.fecha.getTime());
 
     // Asigna los datos a los gráficos
     this.trabajosPorMesData = {

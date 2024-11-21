@@ -53,7 +53,6 @@ export class AdminComponent implements OnInit {
   onClientSelected(clientID: number) {
     this.datosCliente = this.jobs.filter(job => job.customer.id === clientID);
     if (this.datosCliente && this.datosCliente.length > 0) this.currentView = 'client';
-    console.log(this.datosCliente);
   }
   
 }

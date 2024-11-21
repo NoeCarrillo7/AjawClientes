@@ -1,31 +1,43 @@
-<div *ngIf="isLoading" class="loading-container">
+<div *ngIf="cargando" class="loading-container">
     <div class="spinner"></div>
     <h2>Recopilando información... </h2>
-    <P>Un momento por favor</P>
+    <p>Un momento por favor</p>
     <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
-</div>
-
-<div *ngIf="!isLoading" class="main-container">
-    <app-nav-bar></app-nav-bar>
-
+  </div>
+  
+  <div *ngIf="!cargando" class="main-container">
+    <app-nav-bar
+      style="position: fixed;"
+      (viewChange)="cambiarVista($event)"
+    ></app-nav-bar>
+  
     <div class="content-container">
-        <h1>Estadísticas generales</h1>
-
-        <div class="stats-container">
-            <div class="chart-container">
-                <h2>Trabajos realizados</h2>
-            </div>
-            <div class="chart-container">
-                <h2>Horas trabajadas</h2>
-            </div>
-        </div>
-        <div class="stats-container2">
-            <div class="chart-container">
-                <h2>Trabajos realizados</h2>
-            </div>
-            <div class="chart-container">
-                <h2>Horas trabajadas</h2>
-            </div>
-        </div>
+      <ng-container *ngIf="vistaSeleccionada === 'graficas'">
+        <h1 class="nombre-cliente">Estadísticas</h1>
+        <app-charts
+          *ngIf="datosCliente.length > 0"
+          [datosCliente]="datosCliente"
+        ></app-charts>
+      </ng-container>
+  
+      <ng-container *ngIf="vistaSeleccionada === 'detalles'">
+        <h1 class="nombre-cliente">Detalles</h1>
+        <app-details
+          *ngIf="datosCliente.length > 0"
+          [datosCliente]="datosCliente"
+        ></app-details>
+        <app-details
+          *ngIf="datosCliente.length === 0"
+          [jobs]="jobs"
+        ></app-details>
+      </ng-container>
     </div>
-</div>
+  </div>
+  
+      
+  
+  <app-cerrar-sesion *ngIf="showLogoutConfirm"
+      (confirm)="confirmLogout()"
+      (cancelAction)="cancelLogout()">
+  </app-cerrar-sesion>
+    

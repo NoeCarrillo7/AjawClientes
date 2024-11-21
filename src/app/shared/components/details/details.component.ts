@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +21,7 @@ export class DetailsComponent implements OnInit {
   itemsPorPagina: number = 6;
   totalPaginas: number = 1;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     if(this.jobs && this.jobs.length > 0)

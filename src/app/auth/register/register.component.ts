@@ -33,14 +33,9 @@ export class RegisterComponent {
         console.log('Respuesta del registro:', response);
 
         sessionStorage.setItem('isAuthenticated', 'true');
-        const rol = parseInt(this.codigo, 10) === 982647035 ? 'admin' : 'client';
-        sessionStorage.setItem('rol', rol);
+        this.router.navigate(['/login']);
+        alert('Por favor Inicia sesion')
 
-        if (rol === 'admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/client']);
-        }
       },
       (error) => {
         console.error('Error al registrar:', error);

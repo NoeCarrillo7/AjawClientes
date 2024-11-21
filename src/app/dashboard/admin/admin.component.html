@@ -17,18 +17,17 @@
 
     <!-- Vista de clientes -->
     <ng-container *ngIf="currentView === 'clientes'">
-      <app-clients [clients]="jobs" (clienteSeleccionado)="onClientSelected($event)"></app-clients>
+      <app-clients [clients]="jobs" (clientSelected)="onClientSelected($event)"></app-clients>
     </ng-container>
 
     <!-- Vista de gráficas para cliente seleccionado -->
     <ng-container *ngIf="currentView === 'client'">
       <h1 class="nombre-cliente">{{ datosCliente[0]?.customer?.name || 'Nombre del cliente no disponible' }}</h1>
-      <span class="id-cliente">Código de cliente {{datosCliente[0]?.customer?.id || 'Código del cliente no disponible'}}</span>
+      <span class="id-cliente">Codigo de cliente {{datosCliente[0]?.customer?.id || 'Nombre del cliente no disponible'}}</span>
       <app-charts [datosCliente]="datosCliente"></app-charts>
     </ng-container>
     
   </div>
-
   <!-- Detalles generales -->
   <div class="content-details" *ngIf="currentView === 'generales'">
     <app-details  [jobs]="jobs"></app-details>

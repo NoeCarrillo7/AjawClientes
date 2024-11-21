@@ -22,22 +22,29 @@ export class LoginComponent {
   login() {
     this.authService.loginAuth(this.email, this.pass).subscribe(
       (response) => {
-        const code = response.code;
-        sessionStorage.setItem('isAuthenticated', 'true');
-        sessionStorage.setItem('rol', code === 982647035 ? 'admin' : 'client');
+        if (response && response.code) {
+          const code = response.code;
+          sessionStorage.setItem('isAuthenticated', 'true');
+          sessionStorage.setItem('clientCode', code);
+          sessionStorage.setItem('rol', response.code === 982647035 ? 'admin' : 'client');
 
-        if (code === 982647035) {
-          this.router.navigate(['/admin']);
+          if (response.code === 982647035) {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/client']);
+          }
         } else {
-          this.router.navigate(['/client']);
+          alert('Error en la autenticación. Verifica tus credenciales.');
         }
       },
       (error) => {
         console.error('Error de autenticación:', error);
-        alert('Credenciales incorrectas');
+        alert(error.message || 'Credenciales incorrectas.');
       }
     );
   }
+  
+
   showPassword() {
     this.verPassword = !this.verPassword;
   }

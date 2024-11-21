@@ -11,69 +11,70 @@ import { FormsModule } from '@angular/forms';
 })
 export class ClientsComponent implements OnInit {
   @Input() clients: any[] = [];
-  @Output() clienteSeleccionado = new EventEmitter<number>();
-  @Output() datosCliente = new EventEmitter<any>();
+  @Output() clientSelected = new EventEmitter<number>();
+  @Output() clientData = new EventEmitter<any>();
   
-  clientesUnicos: any[] = [];
-  clientesFiltrados: any[] = [];
-  terminoBusqueda: string = '';
-  paginaActual: number = 1;
-  itemsPorPagina: number = 12;
+  uniqueClients: any[] = [];
+  filteredClients: any[] = [];
+  searchTerm: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 12;
 
   ngOnInit(): void {
-    this.eliminarDuplicados();
-    this.clientesFiltrados = this.clientesUnicos;
+    this.removeDuplicates();
+    this.filteredClients = this.uniqueClients;
   }
 
-  seleccionarCliente(clienteId: number): void {
-    this.clienteSeleccionado.emit(clienteId);
+  seleccionarCliente(clientId: number): void {
+    this.clientSelected.emit(clientId);
   }
 
-  eliminarDuplicados(): void {
-    const idsUnicos = new Set();
+  removeDuplicates(): void {
+    const uniqueIds = new Set();
   
     this.clients.sort((a, b) => {
-      const fechaA = new Date(a.dateCreated).getTime();
-      const fechaB = new Date(b.dateCreated).getTime();
-      return fechaB - fechaA;
+      const dateA = new Date(a.dateCreated).getTime();
+      const dateB = new Date(b.dateCreated).getTime();
+      return dateB - dateA;
     });
   
-    this.clientesUnicos = this.clients.filter(clients => {
-      const esDuplicado = idsUnicos.has(clients.customer.id);
-      idsUnicos.add(clients.customer.id);
-      return !esDuplicado;
+    this.uniqueClients = this.clients.filter(client => {
+      const isDuplicate = uniqueIds.has(client.customer.id);
+      uniqueIds.add(client.customer.id);
+      return !isDuplicate;
     });
   
-    this.clientesFiltrados = [...this.clientesUnicos];
+    this.filteredClients = [...this.uniqueClients];
   }
+  
 
   filtrarClientes(): void {
-    if (this.terminoBusqueda.trim() === '') {
-      this.clientesFiltrados = [...this.clientesUnicos];
+    if (this.searchTerm.trim() === '') {
+      this.filteredClients = [...this.uniqueClients];
     } else {
-      this.clientesFiltrados = this.clientesUnicos.filter(cliente =>
-        cliente.customer.name.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+      this.filteredClients = this.uniqueClients.filter(client =>
+        client.customer.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
-    this.paginaActual = 1;
+    this.currentPage = 1;
   }
 
-  get clientesPaginados(): any[] {
-    const indiceInicio = (this.paginaActual - 1) * this.itemsPorPagina;
-    return this.clientesFiltrados.slice(indiceInicio, indiceInicio + this.itemsPorPagina);
+  get paginatedClients(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredClients.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
-  cambiarPagina(pagina: number): void {
-    this.paginaActual = pagina;
+  cambiarPagina(page: number): void {
+    this.currentPage = page;
   }
 
-  get totalPaginas(): number {
-    return Math.ceil(this.clientesFiltrados.length / this.itemsPorPagina);
+  get totalPages(): number {
+    return Math.ceil(this.filteredClients.length / this.itemsPerPage);
   }
 
   rangoResultados(): string {
-    const inicio = (this.paginaActual - 1) * this.itemsPorPagina + 1;
-    const fin = Math.min(this.paginaActual * this.itemsPorPagina, this.clientesFiltrados.length);
-    return `${inicio} - ${fin}`;
+    const start = (this.currentPage - 1) * this.itemsPerPage + 1;
+    const end = Math.min(this.currentPage * this.itemsPerPage, this.filteredClients.length);
+    return `${start} - ${end}`;
   }
 }
