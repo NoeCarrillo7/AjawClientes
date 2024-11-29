@@ -9,8 +9,14 @@
   <app-nav-bar (viewChange)="onViewChange($event)" style="position: fixed;"></app-nav-bar>
 
   <div class="content-container">
+    <h1 *ngIf="currentView === 'generales'">
+      <span *ngIf="isSmallScreen">Bienvenido a tu panel</span>
+      <h1 class="name" *ngIf="isSmallScreen">Jonathan García</h1>
+      <span *ngIf="isSmallScreen">Código de administrador: 982647035</span>
+      <div class="linea-borde" *ngIf="isSmallScreen"></div>
+    </h1>
     <!-- Vista de estadísticas generales -->
-    <h1 *ngIf="currentView === 'generales'">Estadísticas generales</h1>
+    <h1 class="title-estadisticas" *ngIf="currentView === 'generales'">Estadísticas generales</h1>
     <ng-container *ngIf="currentView === 'generales'">
       <app-charts [jobs]="jobs"></app-charts>
     </ng-container>
@@ -24,6 +30,7 @@
     <ng-container *ngIf="currentView === 'client'">
       <h1 class="nombre-cliente">{{ datosCliente[0]?.customer?.name || 'Nombre del cliente no disponible' }}</h1>
       <span class="id-cliente">Codigo de cliente {{datosCliente[0]?.customer?.id || 'Nombre del cliente no disponible'}}</span>
+      <div class="linea-borde" *ngIf="isSmallScreen"></div>
       <app-charts [datosCliente]="datosCliente"></app-charts>
     </ng-container>
     

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener  } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "../../shared/components/nav-bar/nav-bar.component";
@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
   cargando: boolean = true;
   showLogoutConfirm: boolean = false;
   currentView: string = 'generales';
+  isSmallScreen: boolean = false; 
 
   constructor(
     private apiService: ApiService,
@@ -29,6 +30,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.cargando = true;
+    this.checkScreenSize();
     this.apiService.fetchAllJobs().subscribe(
       (data) => {
         this.jobs = data;
@@ -53,6 +55,16 @@ export class AdminComponent implements OnInit {
   onClientSelected(clientID: number) {
     this.datosCliente = this.jobs.filter(job => job.customer.id === clientID);
     if (this.datosCliente && this.datosCliente.length > 0) this.currentView = 'client';
+  }
+  // Detecta cambios en el tamaño de la ventana
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  // Evalúa el tamaño de la pantalla
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth <= 1024; 
   }
   
 }

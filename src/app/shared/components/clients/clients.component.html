@@ -1,32 +1,27 @@
 <div class="search-container">
-    <input type="text" class="search-input" placeholder="Buscar empresa..." [(ngModel)]="searchTerm"
-      (input)="filtrarClientes()" />
-    <button class="search-button">
-      <img src="/assets/busqueda.png" alt="Buscar" />
+  <input type="text" class="search-input" placeholder="Buscar empresa..." [(ngModel)]="searchTerm"
+    (input)="filtrarClientes()" />
+  <button class="search-button">
+    <img src="/assets/busqueda.png" alt="Buscar" />
+  </button>
+</div> 
+
+<div class="cards-container">
+  <div *ngFor="let client of paginatedClients" class="card" (click)="seleccionarCliente(client.customer.id)">
+    <img src="/assets/favicon.ico" alt="Cliente Logo" class="card-logo">
+    <h3>{{ client.customer.name }}</h3>
+    <p>Código de cliente: {{ client.customer.id }}</p>
+  </div>
+</div>
+
+<!-- Controles de Paginación -->
+<div class="pagination">
+  <div class="buttons-pagination">
+    <button (click)="cambiarPagina(currentPage - 1)" [disabled]="currentPage === 1">&laquo;</button>
+    <button *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1"
+      (click)="cambiarPagina(i + 1)">
+      {{ i + 1 }}
     </button>
+    <button (click)="cambiarPagina(currentPage + 1)" [disabled]="currentPage === totalPages">&raquo;</button>
   </div>
-  
-  <div class="cards-container">
-    <div *ngFor="let client of paginatedClients" class="card" (click)="seleccionarCliente(client.customer.id)">
-      <img src="/assets/favicon.ico" alt="Cliente Logo" class="card-logo">
-      <h3>{{ client.customer.name }}</h3>
-      <p>Código de cliente: {{ client.customer.id }}</p>
-    </div>
-  </div>
-  
-  <!-- Controles de Paginación -->
-  <div class="pagination">
-    <div class="buttons-pagination">
-      <button (click)="cambiarPagina(currentPage - 1)" [disabled]="currentPage === 1">&laquo;</button>
-      <button *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1"
-        (click)="cambiarPagina(i + 1)">
-        {{ i + 1 }}
-      </button>
-      <button (click)="cambiarPagina(currentPage + 1)" [disabled]="currentPage === totalPages">&raquo;</button>
-    </div>
-    <div class="resultados">
-      <span class="results-info">
-        Resultados: {{ rangoResultados() }} de {{ filteredClients.length }}
-      </span>
-    </div>
-  </div>
+</div>

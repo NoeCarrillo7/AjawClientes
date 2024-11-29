@@ -1,41 +1,130 @@
-
 .stats-container,
 .stats-container2 {
-    width: 97%;
-    display: flex;
-    justify-content: space-around;
-    margin: 10px 30px;
+  width: 97%;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 30px;
+  flex-wrap: wrap; 
 }
 
 .chart-container {
-    width: 44%;
-    height: 250px;
-    padding: 30px;
-    margin-bottom: 5px;
-    background-color: rgba(255, 255, 255, 0.853);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+  width: 44%;
+  height: 250px;
+  padding: 30px;
+  margin-bottom: 5px;
+  background-color: rgba(255, 255, 255, 0.853);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
 }
+
 .chart-container-lugares {
-    width: 20%;
-    height: 330px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.853);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+  width: 20%;
+  height: 330px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.853);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
 }
+
 .chart-container-horas {
-    width: 68%;
-    height: 330px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.853);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
+  width: 68%;
+  height: 330px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.853);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.451);
 }
 
 .nombre-graficas {
-    margin: 0% 0% 10px;
-    font-family: Arial, sans-serif;
-    color: #0e2472;
-    font-weight: bold;
+  margin: 0% 0% 10px;
+  font-family: Arial, sans-serif;
+  color: #0e2472;
+  font-weight: bold;
+}
+
+.options-chart{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter-container button {
+  padding: 3px 10px;
+  background-color: #050fa10f;
+  color: rgb(143, 143, 143);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-container button.active {
+  background-color: #050fa13d;
+  color: rgb(0, 21, 157);
+}
+
+@media (max-width: 1024px) {
+  .stats-container,
+  .stats-container2 {
+    flex-direction: row; 
+    justify-content: space-evenly;
+    gap: 1px;
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .chart-container{
+    width: 40%;
+  }
+  .chart-container-lugares{
+    width: 27;
+  }
+  .chart-container-horas {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container,
+  .stats-container2 {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chart-container,
+  .chart-container-lugares,
+  .chart-container-horas {
+    width: 90%; 
+    height: 300px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-container,
+  .stats-container2 {
+    flex-direction: row;
+    gap: 1px;
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .chart-container{
+    width: 75%;
+    margin-bottom: 3%;
+  }
+
+  .chart-container-lugares{
+    width: 75%;
+    height: 400px;
+    margin-bottom: 3%;
+  }
+  .chart-container-horas {
+    width: 75%;
+  }
+
+  .filter-container button{
+    font-size: 10px;
+  }
 }

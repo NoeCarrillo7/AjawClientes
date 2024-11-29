@@ -28,17 +28,16 @@ select#mes {
     border: none;
     border-radius: 4px;
     margin-left: 30px;
-    background-color: #BC891B; /* Color de fondo cuando no está activo */
+    background-color: #BC891B;
     font-size: 15px;
-    color: white; /* Color de texto */
+    color: white;
     width: 11%;
     text-align: center;
 }
 
-/* Estilo para las opciones cuando se despliegan */
 select#mes option {
-    background-color: #cfcfcf; /* Color de fondo de las opciones cuando el select está desplegado */
-    color: black; /* Color del texto de las opciones */
+    background-color: #cfcfcf; 
+    color: black; 
 }
 
 
@@ -128,3 +127,99 @@ select#mes option {
     opacity: 0.5;
     cursor: not-allowed;
 }
+@media (max-width: 1024px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .content-options {
+      flex-direction: row;
+      height: auto;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+  
+    select#mes {
+      width: 15%;
+      margin-left: 5%;
+      text-align: center;
+    }
+  
+    /* Tarjetas */
+    .trabajo-detalles {
+      width: 41%; 
+      height: 530px;
+      margin: 2% 2%;
+    }
+  
+    .detalles-titulo span {
+      font-size: 0.8em; 
+    }
+  
+    .pagination {
+      justify-content: center; 
+    }
+  }
+  
+  @media (max-width: 780px) {
+    .container {
+      padding: 10px;
+    }
+  
+    select#mes {
+      width: 60%;
+      font-size: 14px;
+    }
+  
+    .trabajo-detalles {
+      width: 90%;
+      margin: 15px auto;
+      padding: 15px;
+    }
+  
+    .detalles-titulo h2 {
+      font-size: 1.5em;
+    }
+  
+    .pagination button {
+      padding: 5px 8px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 5px;
+    }
+  
+    .content-options {
+      font-size: 0.5em;
+      align-items: flex-start; 
+    }
+  
+    select#mes {
+      width: 30%; 
+      font-size: 12px;
+    }
+  
+    .trabajo-detalles {
+      width: 85%;
+      padding: 10px;
+      margin-left: 5%;
+    }
+  
+    .trabajo-detalles input[type="text"], 
+    .trabajo-detalles textarea {
+      width: 95%;
+      font-size: 14px;
+    }
+  
+    .pagination {
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+  
+    .pagination button {
+      font-size: 12px;
+    }
+  }
+  

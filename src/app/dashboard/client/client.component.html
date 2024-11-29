@@ -1,43 +1,50 @@
 <div *ngIf="cargando" class="loading-container">
-    <div class="spinner"></div>
-    <h2>Recopilando información... </h2>
-    <p>Un momento por favor</p>
-    <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
+  <div class="spinner"></div>
+  <h2>Recopilando información... </h2>
+  <p>Un momento por favor</p>
+  <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
+</div>
+
+<div *ngIf="!cargando" class="main-container">
+  <app-nav-bar
+    style="position: fixed;"
+    (viewChange)="cambiarVista($event)"
+  ></app-nav-bar>
+
+  <div class="content-container">
+  <div *ngIf="isSmallScreen" class="empresa-info">
+    <p>Bienvenido a tu panel</p>
+    <h3> {{ clientName }}</h3>
+    <p>Código: {{ clientCode }}</p>
+    <div class="linea-borde" *ngIf="isSmallScreen"></div>
   </div>
-  
-  <div *ngIf="!cargando" class="main-container">
-    <app-nav-bar
-      style="position: fixed;"
-      (viewChange)="cambiarVista($event)"
-    ></app-nav-bar>
-  
-    <div class="content-container">
-      <ng-container *ngIf="vistaSeleccionada === 'graficas'">
-        <h1 class="nombre-cliente">Estadísticas</h1>
-        <app-charts
-          *ngIf="datosCliente.length > 0"
-          [datosCliente]="datosCliente"
-        ></app-charts>
-      </ng-container>
-  
-      <ng-container *ngIf="vistaSeleccionada === 'detalles'">
-        <h1 class="nombre-cliente">Detalles</h1>
-        <app-details
-          *ngIf="datosCliente.length > 0"
-          [datosCliente]="datosCliente"
-        ></app-details>
-        <app-details
-          *ngIf="datosCliente.length === 0"
-          [jobs]="jobs"
-        ></app-details>
-      </ng-container>
-    </div>
-  </div>
-  
-      
-  
-  <app-cerrar-sesion *ngIf="showLogoutConfirm"
-      (confirm)="confirmLogout()"
-      (cancelAction)="cancelLogout()">
-  </app-cerrar-sesion>
     
+    <ng-container *ngIf="vistaSeleccionada === 'graficas'">
+      <h1 class="nombre-cliente">Estadísticas</h1>
+      <app-charts
+        *ngIf="datosCliente.length > 0"
+        [datosCliente]="datosCliente"
+      ></app-charts>
+    </ng-container>
+
+    <ng-container *ngIf="vistaSeleccionada === 'detalles'">
+      <h1 class="nombre-cliente">Detalles</h1>
+      <app-details
+        *ngIf="datosCliente.length > 0"
+        [datosCliente]="datosCliente"
+      ></app-details>
+      <app-details
+        *ngIf="datosCliente.length === 0"
+        [jobs]="jobs"
+      ></app-details>
+    </ng-container>
+  </div>
+</div>
+
+    
+
+<app-cerrar-sesion *ngIf="showLogoutConfirm"
+    (confirm)="confirmLogout()"
+    (cancelAction)="cancelLogout()">
+</app-cerrar-sesion>
+  

@@ -73,6 +73,20 @@
     color: #333;
   }
   
+  .empresa-info h3 {
+    font-size: 1.5rem; 
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    color: #ffffff;
+  }
+  
+  .empresa-info p {
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    color: #ffffff;
+  }
+  
   /*Estilos Detalles de trabajos*/
   .content-details{
     width: auto;
@@ -82,8 +96,7 @@
   .nombre-cliente{
     color: #ffffff;
     font-family: sans-serif;
-    font-size: 3em;
-    height: 50px;
+    font-size: 2em;
     margin-bottom: 5px;
   }
   .id-cliente{
@@ -92,10 +105,51 @@
     font-size: 0.8em;
     margin-left: 3%;
   }
+  .linea-borde {
+    width: 80%;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
+}
   
   @media (max-width: 1024px) {
     .spinner{
       margin-top: 20%;
+    }
+    .content-container{
+      margin-left: 0%;
+    }
+    .content-container h1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0%;
+    }
+    .content-container span{
+      font-size: 0.7em;
+      color: #ccc;
+    }
+    .empresa-info  {
+      line-height: 0.3;
+    }
+    .empresa-info h3 {
+      font-size: 2rem; 
+      font-family: sans-serif;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    .empresa-info p {
+      font-size: 1.5rem; 
+      text-align: center;
+      color: #ffffffa0;
+    }
+    .nombre-cliente{
+      font-size: 1.9em;
+      margin-top: 50px;
+    }
+  
+    .content-details{
+      margin-left: 0%;
     }
   }
   @media (max-width: 768px) {
@@ -103,6 +157,29 @@
       margin-top: 30%;
       width: 200px;
       height: 200px;
+    }
+    h1 {
+      font-size: 1.1em;
+      font-family: sans-serif;
+    }
+    .empresa-info  {
+      line-height: 0.3;
+    }
+    .empresa-info h3 {
+      font-size: 1.7rem; 
+
+    }
+    .empresa-info p {
+      font-size: 1.2rem;
+
+    }
+    .nombre-cliente{
+      font-size: 1.9em;
+      margin-top: 50px;
+    }
+  
+    .content-details{ 
+      margin-left: 0%;
     }
   }
   @media (max-width: 480px) {
@@ -113,6 +190,29 @@
       margin-top: 40%;
       width: 150px;
       height: 150px;
+    }
+    h1 {
+      font-size: 0.9em;
+      font-family: sans-serif;
+    }
+    .empresa-info  {
+      line-height: 0.3;
+    }
+    .empresa-info h3 {
+      font-size: 1.5rem;
+      margin-top: 0%;
+      margin-bottom: 0%;
+
+    }
+    .empresa-info p {
+      margin-top: 30px;
+      font-size: 0.7rem;
+
+    }
+    .nombre-cliente{
+      font-size: 1.3em;
+      margin-bottom: 0%;
+      margin-top: 0%;
     }
   }
   

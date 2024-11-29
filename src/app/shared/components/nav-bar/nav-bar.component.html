@@ -1,64 +1,69 @@
-<nav class="sidebar">
-    <div class="user-info" *ngIf="!isAdmin">
+<div class="navbar-container">
+  <button class="hamburger" (click)="toggleSidebar()">☰</button>
+
+  <nav class="sidebar" [class.open]="isSidebarOpen">
+    <div class="user-info" *ngIf="!isAdmin && !isSmallScreen">
       <span>Bienvenido a tu panel,</span>
       <h1>{{ clientName || 'Nombre no disponible' }}</h1>
       <span>Código de cliente <strong>{{ clientCode || 'Código no disponible' }}</strong></span>
     </div>
-  
-    <div class="user-info" *ngIf="isAdmin">
+    
+    <div class="user-info" *ngIf="isAdmin && !isSmallScreen">
       <span>Bienvenido a tu panel,</span>
       <h1>Jonathan García</h1>
       <span>Código de administrador <strong>982647035</strong></span>
     </div>
-  
-    <div class="nav-buttons">
-      <!-- Para el Admin -->
-      <button *ngIf="isAdmin" (click)="showGenerales()">
+
+    <div class="nav-buttons" >
+      <!-- Botón General -->
+      <button *ngIf="isAdmin"  (click)="showGenerales(); closeSidebar()">
         <i class="fas fa-chart-bar"></i>
         General
       </button>
-  
-  
-      <!-- Para el Admin: Botón de Clientes -->
-      <button *ngIf="isAdmin" (click)="showClientes()">
+      <div class="linea-borde" *ngIf="isAdmin && isSmallScreen"></div>
+
+      <!-- Botón Clientes -->
+      <button *ngIf="isAdmin" (click)="showClientes(); closeSidebar()">
         <i class="fas fa-users"></i>
         Clientes
       </button>
-  
-      <!-- Para el Cliente: Botón de Gráficas -->
-      <button *ngIf="!isAdmin" (click)="showGraficas()">
+      <div class="linea-borde" *ngIf="isAdmin && isSmallScreen"></div>
+
+      <!-- Botones adicionales solo visibles en pantallas grandes -->
+      <button class="responsive-hide" *ngIf=" !isAdmin" (click)="showGraficas();closeSidebar()">
         <i class="fas fa-chart-line"></i>
         Gráficas
       </button>
-  
-      <!-- Para el Cliente: Botón de Detalles -->
-      <button *ngIf="!isAdmin" (click)="showDetalles()">
+      <div class="linea-borde" *ngIf="isSmallScreen && !isAdmin "></div>
+      <button class="responsive-hide" *ngIf=" !isAdmin" (click)="showDetalles();closeSidebar()">
         <i class="fas fa-info-circle"></i>
         Detalles
       </button>
+      <div class="linea-borde" *ngIf="isSmallScreen && !isAdmin"></div>
     </div>
-  
-    <div class="linea-borde"></div>
-  
+
+    <div class="linea-borde" *ngIf="!isSmallScreen"></div>
+
     <div class="settings">
-      <button class="mode-toggle">
-        <i class="fas fa-sun"></i>
-        Modo claro
-      </button>
-      <button class="logout" (click)="openLogoutConfirm()">
+      <button class="logout" (click)="openLogoutConfirm(); closeSidebar()">
         <i class="fas fa-sign-out-alt"></i>
         Cerrar sesión
       </button>
+
+      <!-- Imagen visible solo en pantallas pequeñas -->
+      <div class="small-screen-image" *ngIf="isSmallScreen">
+        <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo Pequeño" />
+      </div>
     </div>
-  
-    <footer>
+
+    <footer *ngIf="!isSmallScreen">
       <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo" />
       <p>AJAW 2024©, todos los derechos reservados.</p>
     </footer>
   </nav>
-  
+
   <app-cerrar-sesion *ngIf="showLogoutConfirm"
     (confirm)="confirmLogout()"
     (cancelAction)="cancelLogout()">
   </app-cerrar-sesion>
-  
+</div>

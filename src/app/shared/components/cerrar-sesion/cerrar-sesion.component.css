@@ -54,3 +54,9 @@
     transform: scale(1.05);
     color: #333333;
 }
+
+@media (max-width: 480px){
+    .modal-container{
+        width: 80%;
+    }
+}
