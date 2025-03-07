@@ -7,7 +7,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly apiUrl = 'https://servidorapi.ajaw.com.mx/api.php?endpoint=/Api/v3/job/list'; 
+  private readonly apiUrl = 'https://servidorapi.ajaw.com.mx/api.php?endpoint=/Api/v3/job/list';
 
   constructor(private http: HttpClient) {}
 

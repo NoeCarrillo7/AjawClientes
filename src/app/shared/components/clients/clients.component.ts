@@ -39,6 +39,9 @@ export class ClientsComponent implements OnInit {
     });
   
     this.uniqueClients = this.clients.filter(client => {
+      if (!client.customer || !client.customer.id) {
+        return false;
+      }
       const isDuplicate = uniqueIds.has(client.customer.id);
       uniqueIds.add(client.customer.id);
       return !isDuplicate;

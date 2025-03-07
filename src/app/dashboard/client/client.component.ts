@@ -67,8 +67,13 @@ export class ClientComponent implements OnInit {
 
   onClientSelected(clientID: number) {
     this.datosCliente = this.jobs.filter(
-      (job) => job.customer.id === clientID
+      (job) => job.customer && job.customer.id === clientID
     );
+  
+    if (this.datosCliente.length === 0) {
+      console.warn(`No se encontraron trabajos para el cliente con ID: ${clientID}`);
+    }
+  
     this.clientDataEvent.emit(this.datosCliente);
   }
 

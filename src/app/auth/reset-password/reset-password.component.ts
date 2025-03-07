@@ -30,7 +30,7 @@ export class ResetPasswordComponent {
     }
 
     this.http
-      .post('https://prueba.ajaw.com.mx/api/reset_password.php', {
+      .post('https://clientes.ajaw.com.mx/api/reset_password.php', {
         token: this.token,
         newPassword: this.newPassword,
       })

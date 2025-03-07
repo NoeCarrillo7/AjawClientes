@@ -25,7 +25,7 @@ export class ForgotPasswordComponent {
     }
   
     // Enviar solicitud al backend
-    this.http.post('https://prueba.ajaw.com.mx/api/recover_password.php', { email: this.email }).subscribe({
+    this.http.post('https://clientes.ajaw.com.mx/api/recover_password.php', { email: this.email }).subscribe({
       next: (response: any) => {
         if (response.error) {
           this.error = 'El correo no está registrado.';

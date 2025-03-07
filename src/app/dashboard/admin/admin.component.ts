@@ -53,8 +53,13 @@ export class AdminComponent implements OnInit {
   }
 
   onClientSelected(clientID: number) {
-    this.datosCliente = this.jobs.filter(job => job.customer.id === clientID);
-    if (this.datosCliente && this.datosCliente.length > 0) this.currentView = 'client';
+    this.datosCliente = this.jobs.filter(job => job.customer && job.customer.id === clientID);
+  
+    if (this.datosCliente.length > 0) {
+      this.currentView = 'client';
+    } else {
+      console.warn(`No se encontraron trabajos para el cliente con ID: ${clientID}`);
+    }
   }
   // Detecta cambios en el tamaño de la ventana
   @HostListener('window:resize', ['$event'])
