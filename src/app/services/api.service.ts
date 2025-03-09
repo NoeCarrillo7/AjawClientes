@@ -28,6 +28,8 @@ export class ApiService {
         return forkJoin(requests).pipe(
           map(responses => {
             const allData = responses.reduce((acc, response) => acc.concat(response.data), []);
+            console.log('Datos obtenidos:', allData);
+            
             return allData;
           })
         );

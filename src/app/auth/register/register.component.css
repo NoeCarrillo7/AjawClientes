@@ -1,4 +1,4 @@
-/*Contendor principal*/
+/*Contendor principal*/ 
 .container {
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
@@ -50,13 +50,13 @@
 /*Contendor para inputs*/
 .input-container {
     position: relative;
-    width: 65%;
+    width: 56%;
     margin: 0% 17%;
 }
 
 /*Estilos para inputs*/
 .input-container input {
-    width: 85%;
+    width: 100%;
     padding: 15px 20px 15px 50px;
     margin: 7px 0;
     border: none;
@@ -84,7 +84,7 @@ input::placeholder {
 .input-container i.fa-eye-slash {
     position: absolute;
     top: 50%;
-    left: 85%;
+    left: 100%;
     transform: translateY(-50%);
     color: #a4a5a8;
     cursor: pointer;
@@ -102,7 +102,7 @@ input::placeholder {
 
 .submit-button {
     width: 65%;
-    padding: 20px;
+    height: 50px;
     margin: 25px;
     background-color: #b58800;
     border: none;
@@ -150,7 +150,7 @@ input::placeholder {
     /* Ajustes del contenedor de la imagen */
     .img-container {
         width: 100%;
-        height: 45vh;
+        height: 35vh;
     }
 
     /* Ajustes del contenedor de login */
@@ -158,25 +158,38 @@ input::placeholder {
         width: 100%;
         padding: 0px;
     }
+    
 
     .input-container i{
-        left: 8%;
+        left: 5%;
+    }
+    .input-container i.fa-eye,
+    .input-container i.fa-eye-slash {
+        left: 100%;
+    }
+    .input-container{
+        width: 49%;
+        margin: 0 22%;
     }
 
     .container-options {
         width: 60%;
         margin-left: 20%;
     }
+
+    .text-help{
+        margin-left: 23%;
+    }
     
     .submit-button {
-        width: 62%;
+        width: 55%;
     }
 }
 
 /* Estilos para pantallas de tablets */
 @media (max-width: 768px) {
     .container{
-        width: 130%;
+        width: 100%;
     }
     .login-container h1 {
         font-size: 2.5em;
@@ -189,9 +202,18 @@ input::placeholder {
     .input-container {
         width: 80%;
         margin: 0 10%;
+        font-size: 0.75em;
+    }
+    .input-container input{
+        width: 85%;
+        height: 10px;
     }
     .input-container i{
-        left: 8%;
+        left: 5%;
+    }
+    .input-container i.fa-eye,
+    .input-container i.fa-eye-slash {
+        left: 90%;
     }
 
     .container-options {
@@ -199,39 +221,60 @@ input::placeholder {
         margin: 20px auto;
     }
 
+    .text-help{
+        margin-left: 10%;
+    }
+
     .submit-button {
-        width: 70%;
-        padding: 15px;
+        width: 80%;
     }
 }
 
 /* Estilos para pantallas de móviles */
 @media (max-width: 480px) {
     .login-container h1 {
-        margin-top: 10%;
-        font-size: 2em;
+        margin-top: 5%;
+        font-size: 1.5em;
     }
     
     .login-container p {
-        font-size: 0.85em;
+        font-size: 0.65em;
+        margin-bottom: 4%;
     }
 
     /* Ajustes del contenedor de login y los inputs */
     .input-container {
-        width: 86%;
+        width: 80%;
         margin: 0 7%;
+        height: 43px;
+        font-size: 0.65em;
+    }
+    .input-container input{
+        height: 5px;
     }
     .input-container i{
         left: 5%;
+        margin-top: 5px;
+    }
+    .input-container i.fa-eye,
+    .input-container i.fa-eye-slash {
+        left: 95%;
     }
 
     .submit-button {
+        margin-top: 4%;
+        margin-bottom: 3%;
         width: 85%;
-        padding: 15px;
+        height: 35px;
+        font-size: 0.65em;
     }
 
     .create-account {
-        font-size: 0.85em;
+        font-size: 0.65em;
+    }
+    .text-help{
+        margin-left: 8%;
+        font-size: 0.55em;
     }
 
     .login-container img {
