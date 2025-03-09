@@ -1,45 +1,49 @@
-<div *ngIf="cargando" class="loading-container">
-  <div class="spinner"></div>
-  <h2>Recopilando información... </h2>
-  <p>Un momento por favor</p>
-  <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
-</div>
-
-<div *ngIf="!cargando" class="main-container">
-  <app-nav-bar (viewChange)="onViewChange($event)" style="position: fixed;"></app-nav-bar>
-
-  <div class="content-container">
-    <h1 *ngIf="currentView === 'generales'">
-      <span *ngIf="isSmallScreen">Bienvenido a tu panel</span>
-      <h1 class="name" *ngIf="isSmallScreen">Jonathan García</h1>
-      <span *ngIf="isSmallScreen">Código de administrador: 982647035</span>
-      <div class="linea-borde" *ngIf="isSmallScreen"></div>
-    </h1>
-    <!-- Vista de estadísticas generales -->
-    <h1 class="title-estadisticas" *ngIf="currentView === 'generales'">Estadísticas generales</h1>
-    <ng-container *ngIf="currentView === 'generales'">
-      <app-charts [jobs]="jobs"></app-charts>
-    </ng-container>
-
-    <!-- Vista de clientes -->
-    <ng-container *ngIf="currentView === 'clientes'">
-      <app-clients [clients]="jobs" (clientSelected)="onClientSelected($event)"></app-clients>
-    </ng-container>
-
-    <!-- Vista de gráficas para cliente seleccionado -->
-    <ng-container *ngIf="currentView === 'client'">
-      <h1 class="nombre-cliente">{{ datosCliente[0]?.customer?.name || 'Nombre del cliente no disponible' }}</h1>
-      <span class="id-cliente">Codigo de cliente {{datosCliente[0]?.customer?.id || 'Nombre del cliente no disponible'}}</span>
-      <div class="linea-borde" *ngIf="isSmallScreen"></div>
-      <app-charts [datosCliente]="datosCliente"></app-charts>
-    </ng-container>
-    
+@if(cargando){
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <h2>Recopilando información... </h2>
+    <p>Un momento por favor</p>
+    <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo">
   </div>
-  <!-- Detalles generales -->
-  <div class="content-details" *ngIf="currentView === 'generales'">
-    <app-details  [jobs]="jobs"></app-details>
+}
+
+@if (!cargando) {
+  <div class="main-container">
+    <app-nav-bar (viewChange)="onViewChange($event)" style="position: fixed;"></app-nav-bar>
+  
+    <div class="content-container">
+      <h1 *ngIf="currentView === 'generales'">
+        <span *ngIf="isSmallScreen">Bienvenido a tu panel</span>
+        <h1 class="name" *ngIf="isSmallScreen">Jonathan García</h1>
+        <span *ngIf="isSmallScreen">Código de administrador: 982647035</span>
+        <div class="linea-borde" *ngIf="isSmallScreen"></div>
+      </h1>
+      <!-- Vista de estadísticas generales -->
+      <h1 class="title-estadisticas" *ngIf="currentView === 'generales'">Estadísticas generales</h1>
+      <ng-container *ngIf="currentView === 'generales'">
+        <app-charts [jobs]="jobs"></app-charts>
+      </ng-container>
+  
+      <!-- Vista de clientes -->
+      <ng-container *ngIf="currentView === 'clientes'">
+        <app-clients [clients]="jobs" (clientSelected)="onClientSelected($event)"></app-clients>
+      </ng-container>
+  
+      <!-- Vista de gráficas para cliente seleccionado -->
+      <ng-container *ngIf="currentView === 'client'">
+        <h1 class="nombre-cliente">{{ datosCliente[0]?.customer?.name || 'Nombre del cliente no disponible' }}</h1>
+        <span class="id-cliente">Codigo de cliente {{datosCliente[0]?.customer?.id || 'Nombre del cliente no disponible'}}</span>
+        <div class="linea-borde" *ngIf="isSmallScreen"></div>
+        <app-charts [datosCliente]="datosCliente"></app-charts>
+      </ng-container>
+      
+    </div>
+    <!-- Detalles generales -->
+    <div class="content-details" *ngIf="currentView === 'generales'">
+      <app-details  [jobs]="jobs"></app-details>
+    </div>
+    <div class="content-details" *ngIf="currentView === 'client'">
+      <app-details [datosCliente]="datosCliente"></app-details>
+    </div>
   </div>
-  <div class="content-details" *ngIf="currentView === 'client'">
-    <app-details [datosCliente]="datosCliente"></app-details>
-  </div>
-</div>
+}

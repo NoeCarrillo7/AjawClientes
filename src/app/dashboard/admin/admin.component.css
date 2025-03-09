@@ -151,8 +151,15 @@ h2 {
     width: 200px;
     height: 200px;
   }
+
+  .loading-container{
+    width: 90%;
+  }
 }
 @media (max-width: 480px) {
+  .loading-container{
+    width: 87%;
+  }
   .spinner{
     margin-top: 40%;
     width: 150px;
