@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthService {
   //DESCOMENTAR LINEA PARA PRODUCCION
-  //private apiUrl = 'https://clientes.ajaw.com.mx/api';
-  private apiUrl = 'http://localhost:5000/api/usuarios';
+  private apiUrl = 'https://clientes.ajaw.com.mx/api';
+  //private apiUrl = 'http://localhost:5000/api/usuarios';
 
   constructor(private http: HttpClient) {}
 
@@ -19,8 +19,8 @@ export class AuthService {
     }
 
     //DESCOMENTAR LINEA PARA PRODUCCION
-    //return this.http.post(`${this.apiUrl}/login.php`, { email, pass }).pipe(
-    return this.http.post(`${this.apiUrl}/login`, { email, pass }).pipe(
+    return this.http.post(`${this.apiUrl}/login.php`, { email, pass }).pipe(
+    //return this.http.post(`${this.apiUrl}/login`, { email, pass }).pipe(
       catchError((error) => {
         console.error('Error en loginAuth:', error);
         return throwError(() => new Error('Error en la autenticación.'));

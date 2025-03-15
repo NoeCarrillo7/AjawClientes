@@ -1,57 +1,55 @@
-<div class="container">
-    <div class="content-options">
-        <label for="mes">Detalles de trabajos para </label>
-        <select id="mes" [(ngModel)]="mesSeleccionado" (change)="onMesChange($event)">
-            <option *ngFor="let mes of meses; let i = index" [value]="i">
-                {{ nombreMes(i) }}
-            </option>
-        </select>
-    </div>
-
-    <div class="content-jobs">
-        <div *ngFor="let trabajo of trabajos" class="trabajo-detalles">
-            <div class="detalles-titulo">
-                <h2>{{trabajo?.type}}</h2>
-                <span>{{ trabajo?.dateCreated }}</span>
-            </div>
- 
-            <label>Descripción:</label>
-            <textarea [(ngModel)]="trabajo.description" rows="auto" readonly></textarea>
-
-            <label>Sitio:</label>
-            <input type="text" [value]="trabajo?.sitio" readonly>
-
-            <label>Equipo:</label>
-            <input type="text" [value]="trabajo?.equipmentName" readonly>
-
-            <label>Técnico:</label>
-            <input type="text" [value]="trabajo?.technicianName" readonly>
-
-            <label>Ciudad:</label>
-            <input type="text" [value]="trabajo?.addressCity" readonly>
-
-            <label>Tiempo Trabajado:</label>
-            <input type="text" [value]="trabajo?.tiempoTrabajado" readonly>
+<div class="content-options">
+    <label for="mes">Detalles de trabajos para </label>
+    <select id="mes" [(ngModel)]="mesSeleccionado" (change)="onMesChange($event)">
+        <option *ngFor="let mes of meses; let i = index" [value]="i">
+            {{ nombreMes(i) }}
+        </option>
+    </select>
+</div>
+<div class="content-jobs">
+    <div *ngFor="let trabajo of trabajos" class="trabajo-detalles">
+        <div class="detalles-titulo">
+            <h2>{{trabajo?.type}}</h2>
+            <span>{{ trabajo?.dateCreated }}</span>
         </div>
+
+        <label>Descripción:</label>
+        <textarea [(ngModel)]="trabajo.description" rows="auto" readonly></textarea>
+
+        <label>Sitio:</label>
+        <input type="text" [value]="trabajo?.sitio" readonly>
+
+        <label>Equipo:</label>
+        <input type="text" [value]="trabajo?.equipmentName" readonly>
+
+        <label>Técnico:</label>
+        <input type="text" [value]="trabajo?.technicianName" readonly>
+
+        <label>Ciudad:</label>
+        <input type="text" [value]="trabajo?.addressCity" readonly>
+
+        <label>Tiempo Trabajado:</label>
+        <input type="text" [value]="trabajo?.tiempoTrabajado" readonly>
     </div>
-    <div class="pagination">
-        <button (click)="cambioPagina(paginaActual - 1)" [disabled]="paginaActual === 1">‹</button>
-    
-        <button *ngIf="paginasVisibles()[0] > 1" (click)="cambioPagina(1)">1</button>
-        <span *ngIf="paginasVisibles()[0] > 2">...</span>
-    
-        <button *ngFor="let page of paginasVisibles()" 
-                [class.active]="page === paginaActual"
-                (click)="cambioPagina(page)">
-            {{ page }}
-        </button>
-    
-        <span *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas - 1">...</span>
-        <button *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas" 
-                (click)="cambioPagina(totalPaginas)">
-            {{ totalPaginas }}
-        </button>
-    
-        <button (click)="cambioPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">›</button>
-    </div>
+</div>
+
+<div class="pagination">
+    <button (click)="cambioPagina(paginaActual - 1)" [disabled]="paginaActual === 1">‹</button>
+
+    <button *ngIf="paginasVisibles()[0] > 1" (click)="cambioPagina(1)">1</button>
+    <span *ngIf="paginasVisibles()[0] > 2">...</span>
+
+    <button *ngFor="let page of paginasVisibles()" 
+            [class.active]="page === paginaActual"
+            (click)="cambioPagina(page)">
+        {{ page }}
+    </button>
+
+    <span *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas - 1">...</span>
+    <button *ngIf="paginasVisibles()[paginasVisibles().length - 1] < totalPaginas" 
+            (click)="cambioPagina(totalPaginas)">
+        {{ totalPaginas }}
+    </button>
+
+    <button (click)="cambioPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas">›</button>
 </div>

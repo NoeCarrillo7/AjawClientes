@@ -1,17 +1,16 @@
-    
-
 body {
     background: rgb(37, 74, 148);
     overflow-y: auto;
     overflow-x: hidden;
-    min-height: 100%;
+    min-height: 100vh; /* Evita cortes en pantallas pequeñas */
     margin: 0;
     position: relative;
 }
 
+/* Estilos generales */
 body::after {
     content: '';
-    position: absolute;
+    position: fixed; /* 🔹 Se mantiene fijo en la pantalla */
     width: 30vw;
     height: 30vw;
     background: rgb(83, 37, 141);
@@ -20,12 +19,12 @@ body::after {
     top: 10%;
     left: 60%;
     transform: translate(-50%, -50%) rotate(45deg);
-    z-index: -1;
+    z-index: -1; /* 🔹 Se mantiene en el fondo */
 }
 
 body::before {
     content: '';
-    position: absolute;
+    position: fixed; /* 🔹 Se mantiene fijo */
     width: 35vw;
     height: 50vh;
     background: rgba(36, 110, 147, 0.851);
@@ -35,4 +34,42 @@ body::before {
     left: 70%;
     transform: translate(-50%, -50%);
     z-index: -1;
+}
+
+/* 📱 Para pantallas medianas (menos de 768px) */
+@media (max-width: 768px) {
+    body::after {
+        width: 40vw;
+        height: 40vw;
+        top: 15%;
+        left: 50%;
+        filter: blur(60px);
+    }
+
+    body::before {
+        width: 50vw;
+        height: 40vh;
+        top: 50%;
+        left: 50%;
+        filter: blur(80px);
+    }
+}
+
+/* 📱 Para pantallas pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+    body::after {
+        width: 50vw;
+        height: 50vw;
+        top: 10%;
+        left: 50%;
+        filter: blur(50px);
+    }
+
+    body::before {
+        width: 60vw;
+        height: 35vh;
+        top: 55%;
+        left: 50%;
+        filter: blur(70px);
+    }
 }

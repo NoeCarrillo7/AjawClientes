@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
   cargando: boolean = true;
   showLogoutConfirm: boolean = false;
   currentView: string = 'generales';
-  isSmallScreen: boolean = false; 
+  isSmallScreen: boolean = false;
 
   constructor(
     private apiService: ApiService,

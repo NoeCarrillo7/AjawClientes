@@ -88,6 +88,8 @@
 @media (max-width: 768px) {
   .stats-container,
   .stats-container2 {
+    width: 92%;
+    margin-left: 5%;
     flex-direction: column;
     align-items: center;
     gap: 20px;
@@ -106,22 +108,28 @@
   .stats-container2 {
     flex-direction: row;
     gap: 1px;
-    margin-left: 0%;
-    width: 100%;
+    margin-left: 1%;
+    margin-bottom: 0%;
+    width: 98%;
   }
 
   .chart-container{
     width: 75%;
+    height: 200px;
     margin-bottom: 3%;
   }
 
   .chart-container-lugares{
     width: 75%;
     height: 400px;
-    margin-bottom: 3%;
+    
+    order: 2;
   }
   .chart-container-horas {
     width: 75%;
+    height: 200px;  
+    margin-bottom: 3%;
+    order: 1;
   }
 
   .filter-container button{

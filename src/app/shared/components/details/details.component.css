@@ -1,18 +1,19 @@
 /* Contenedor general */
-.container {
-    padding: 20px;
-    color: white;
-}
+
 
 .content-options {
     display: flex;
     flex-direction: row;
     height: 40px;
-    margin-bottom: 50px;
-}
+    margin-bottom: 30px;
+    margin-left:4%;
+    margin-top: 30px;
+    color: white;
+  }
 
 .content-jobs{
-    width: 100%;
+    width: 98%;
+    margin-left: 2%;
 }
 
 .content-options label {
@@ -44,14 +45,14 @@ select#mes option {
 
 /* Estilos de la tarjeta */
 .trabajo-detalles {
-    width: 27%;
+    width: 28%;
     height: 520px;
     background-color: rgba(255, 255, 255, 0.889);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin: 10px;
-    margin-left: 2%;
+    margin-left: 1%;
     display: inline-block;
     vertical-align: top;
     font-family: sans-serif;
@@ -105,8 +106,9 @@ select#mes option {
     display: flex;
     justify-content: left;
     gap: 8px;
-    margin-left: 2%;
-    margin-top: 2%;
+    margin-left: 4%;
+    margin-top: 1%;
+    margin-bottom: 3%;
 }
 
 .pagination button {
@@ -162,18 +164,17 @@ select#mes option {
   }
   
   @media (max-width: 780px) {
-    .container {
-      padding: 10px;
+    .content-options label{
+      font-size: 0.8rem;
     }
-  
     select#mes {
       width: 60%;
       font-size: 14px;
     }
-  
+   
     .trabajo-detalles {
-      width: 90%;
-      margin: 15px auto;
+      width: 40%;
+      margin-left: 3%;
       padding: 15px;
     }
   
@@ -187,32 +188,53 @@ select#mes option {
   }
   
   @media (max-width: 480px) {
-    .container {
-      padding: 5px;
-    }
-  
     .content-options {
       font-size: 0.5em;
       align-items: flex-start; 
     }
+
+    .content-jobs{
+      width: 100%;
+      margin: 0%;
+    }
+
+    .trabajo-detalles {
+      width: 35%;
+      margin-left: 4%;
+      height: 320px;
+    }
+
+    .detalles-titulo{
+      margin-bottom: 1%;
+    }
+
+    .detalles-titulo h2 {
+      font-size: 0.8em;
+      margin-bottom: 0%;
+    }
   
+    .detalles-titulo span {
+      font-size: 0.6em;
+    }
+
+    .trabajo-detalles label {
+      font-size: 0.5em;
+    }
+
+    .trabajo-detalles input, textarea{
+      height: 10px;
+      font-size: 0.5em;
+      margin-bottom: 0% !important;
+    }
+
+    .content-options{
+      margin: 1%;
+    }
     select#mes {
       width: 30%; 
       font-size: 12px;
     }
-  
-    .trabajo-detalles {
-      width: 85%;
-      padding: 10px;
-      margin-left: 5%;
-    }
-  
-    .trabajo-detalles input[type="text"], 
-    .trabajo-detalles textarea {
-      width: 95%;
-      font-size: 14px;
-    }
-  
+
     .pagination {
       flex-wrap: wrap;
       gap: 5px;
