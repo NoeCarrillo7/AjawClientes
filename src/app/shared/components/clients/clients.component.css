@@ -134,6 +134,13 @@ p {
   margin-left: 500px;
 }
 
+@media (max-width: 1024px) {
+  .search-container{
+    margin-top: 8%;
+  }
+  
+}
+
 @media (max-width: 768px) {
   .cards-container {
     display: grid;

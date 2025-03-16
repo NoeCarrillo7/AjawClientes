@@ -57,6 +57,19 @@
 
 @media (max-width: 480px){
     .modal-container{
-        width: 80%;
+        width: 50%;
     }
-}
+
+    .modal-container h2{
+        font-size: 1em;
+    }
+
+    .modal-container p{
+        font-size: 0.8em;
+    }
+
+    .modal-buttons button{
+        height: 35px;
+        font-size: 0.7em;
+    }
+} 

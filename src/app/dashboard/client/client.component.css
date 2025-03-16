@@ -9,6 +9,7 @@
     z-index: 1;
     padding: 20px;
     overflow-y: hidden;
+    font-family: sans-serif;
   }
   
   .spinner {
@@ -81,8 +82,8 @@
     color: #ffffff;
   }
   
-  .empresa-info p {
-    font-size: 1.2rem;
+  .empresa-info span {
+    font-size: 11px;
     font-family: sans-serif;
     color: #ffffff;
   }
@@ -124,25 +125,28 @@
       align-items: center;
       margin-left: 0%;
     }
+    .span-bienvenido{
+      margin-top: 12%;
+    }
     .content-container span{
-      font-size: 0.7em;
+      font-size: 1.2em;
+      margin-top: 4%;
       color: #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .empresa-info  {
       line-height: 0.3;
     }
     .empresa-info h3 {
-      font-size: 2rem; 
+      font-size: 3rem; 
       font-family: sans-serif;
       text-align: center;
       font-weight: bold;
       color: #ffffff;
     }
-    .empresa-info p {
-      font-size: 1.5rem; 
-      text-align: center;
-      color: #ffffffa0;
-    }
+
     .nombre-cliente{
       font-size: 1.9em;
       margin-top: 50px;
@@ -158,61 +162,40 @@
       width: 200px;
       height: 200px;
     }
-    h1 {
-      font-size: 1.1em;
-      font-family: sans-serif;
+    .empresa-info h3{
+      margin-top: 4%;
     }
-    .empresa-info  {
-      line-height: 0.3;
-    }
-    .empresa-info h3 {
-      font-size: 1.7rem; 
 
-    }
-    .empresa-info p {
-      font-size: 1.2rem;
-
-    }
-    .nombre-cliente{
-      font-size: 1.9em;
-      margin-top: 50px;
-    }
-  
-    .content-details{ 
-      margin-left: 0%;
-    }
   }
   @media (max-width: 480px) {
     .loading-container{
-      width: 120%;
+      width: 87%;
     }
     .spinner{
       margin-top: 40%;
       width: 150px;
       height: 150px;
     }
-    h1 {
-      font-size: 0.9em;
-      font-family: sans-serif;
+    .loading-container h2{
+      font-size: 18px;
     }
-    .empresa-info  {
-      line-height: 0.3;
-    }
-    .empresa-info h3 {
-      font-size: 1.5rem;
-      margin-top: 0%;
-      margin-bottom: 0%;
 
+    .empresa-info span{
+      font-size: 0.7em;
+      margin-top: 5%;
     }
-    .empresa-info p {
-      margin-top: 30px;
-      font-size: 0.7rem;
 
+    .empresa-info h3{
+      font-size: 1.5em;
     }
+
     .nombre-cliente{
-      font-size: 1.3em;
+      font-size: 1.1em;
       margin-bottom: 0%;
       margin-top: 0%;
+    }
+    .linea-borde{
+      margin-bottom: 4%;
     }
   }
   

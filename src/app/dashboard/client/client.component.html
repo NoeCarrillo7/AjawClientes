@@ -13,9 +13,9 @@
 
   <div class="content-container">
   <div *ngIf="isSmallScreen" class="empresa-info">
-    <p>Bienvenido a tu panel</p>
+    <span class="span-bienvenido">Bienvenido a tu panel</span>
     <h3> {{ clientName }}</h3>
-    <p>Código: {{ clientCode }}</p>
+    <span>Código: {{ clientCode }}</span>
     <div class="linea-borde" *ngIf="isSmallScreen"></div>
   </div>
     
@@ -28,7 +28,7 @@
     </ng-container>
 
     <ng-container *ngIf="vistaSeleccionada === 'detalles'">
-      <h1 class="nombre-cliente">Detalles</h1>
+      
       <app-details
         *ngIf="datosCliente.length > 0"
         [datosCliente]="datosCliente"

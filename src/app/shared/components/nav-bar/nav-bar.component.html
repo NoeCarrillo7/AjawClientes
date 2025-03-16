@@ -1,69 +1,96 @@
 <div class="navbar-container">
-  <button class="hamburger" (click)="toggleSidebar()">☰</button>
-
-  <nav class="sidebar" [class.open]="isSidebarOpen">
-    <div class="user-info" *ngIf="!isAdmin && !isSmallScreen">
-      <span>Bienvenido a tu panel,</span>
-      <h1>{{ clientName || 'Nombre no disponible' }}</h1>
-      <span>Código de cliente <strong>{{ clientCode || 'Código no disponible' }}</strong></span>
+  <!-- Sidebar en pantallas grandes -->
+  @if (isSmallScreen) {
+    <div class="small-screen-image">
+    <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo Pequeño" />
     </div>
-    
-    <div class="user-info" *ngIf="isAdmin && !isSmallScreen">
-      <span>Bienvenido a tu panel,</span>
-      <h1>Jonathan García</h1>
-      <span>Código de administrador <strong>982647035</strong></span>
-    </div>
-
-    <div class="nav-buttons" >
-      <!-- Botón General -->
-      <button *ngIf="isAdmin"  (click)="showGenerales(); closeSidebar()">
-        <i class="fas fa-chart-bar"></i>
-        General
-      </button>
-      <div class="linea-borde" *ngIf="isAdmin && isSmallScreen"></div>
-
-      <!-- Botón Clientes -->
-      <button *ngIf="isAdmin" (click)="showClientes(); closeSidebar()">
-        <i class="fas fa-users"></i>
-        Clientes
-      </button>
-      <div class="linea-borde" *ngIf="isAdmin && isSmallScreen"></div>
-
-      <!-- Botones adicionales solo visibles en pantallas grandes -->
-      <button class="responsive-hide" *ngIf=" !isAdmin" (click)="showGraficas();closeSidebar()">
-        <i class="fas fa-chart-line"></i>
-        Gráficas
-      </button>
-      <div class="linea-borde" *ngIf="isSmallScreen && !isAdmin "></div>
-      <button class="responsive-hide" *ngIf=" !isAdmin" (click)="showDetalles();closeSidebar()">
-        <i class="fas fa-info-circle"></i>
-        Detalles
-      </button>
-      <div class="linea-borde" *ngIf="isSmallScreen && !isAdmin"></div>
-    </div>
-
-    <div class="linea-borde" *ngIf="!isSmallScreen"></div>
-
-    <div class="settings">
-      <button class="logout" (click)="openLogoutConfirm(); closeSidebar()">
-        <i class="fas fa-sign-out-alt"></i>
-        Cerrar sesión
-      </button>
-
-      <!-- Imagen visible solo en pantallas pequeñas -->
-      <div class="small-screen-image" *ngIf="isSmallScreen">
-        <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo Pequeño" />
+  }
+  @if (!isSmallScreen) {
+    <nav class="sidebar" [class.open]="isSidebarOpen">
+      @if (!isAdmin) {
+        <div class="user-info">
+          <span>Bienvenido a tu panel,</span>
+          <h1>{{ clientName || 'Nombre no disponible' }}</h1>
+          <span>Código de cliente <strong>{{ clientCode || 'Código no disponible' }}</strong></span>
+        </div>
+      }
+      @else {
+        <div class="user-info">
+          <span>Bienvenido a tu panel,</span>
+          <h1>Jonathan García</h1>
+          <span>Código de administrador <strong>982647035</strong></span>
+        </div>
+      }
+  
+      <div class="nav-buttons">
+        <!-- Botón General -->
+        @if (isAdmin) {
+          <button (click)="showGenerales(); closeSidebar()">
+            <i class="fas fa-chart-bar"></i>
+            General
+          </button>
+          <button (click)="showClientes(); closeSidebar()">
+            <i class="fas fa-users"></i>
+            Clientes
+          </button>
+        }
+        @else {
+          <button (click)="showGraficas(); closeSidebar()">
+            <i class="fas fa-chart-line"></i>
+            Gráficas
+          </button>
+          <button (click)="showDetalles(); closeSidebar()">
+            <i class="fas fa-info-circle"></i>
+            Detalles
+          </button>
+        }
       </div>
+  
+      <div class="settings">
+        <div class="linea-borde"></div>
+        <button class="logout" (click)="openLogoutConfirm(); closeSidebar()">
+          <i class="fas fa-sign-out-alt"></i>
+          Cerrar sesión
+        </button>
+      </div>
+  
+      <footer>
+        <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo" />
+        <p>AJAW 2024©, todos los derechos reservados.</p>
+      </footer>
+    </nav>
+  }
+  @else {
+
+    <div class="small-screen-buttons">
+      @if (isAdmin) {
+        <button (click)="showGenerales()">
+          <i class="fas fa-chart-bar"></i>
+        </button>
+        <button (click)="showClientes()">
+          <i class="fas fa-users"></i>
+        </button>
+      }
+      @else {
+        <button (click)="showGraficas()">
+          <i class="fas fa-chart-line"></i>
+        </button>
+        <button (click)="showDetalles()">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      }
+      <button class="logout-button" (click)="openLogoutConfirm()">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
     </div>
+  }
 
-    <footer *ngIf="!isSmallScreen">
-      <img src="assets/LOGO AJAW BLANCO.png" alt="AJAW Logo" />
-      <p>AJAW 2024©, todos los derechos reservados.</p>
-    </footer>
-  </nav>
-
-  <app-cerrar-sesion *ngIf="showLogoutConfirm"
-    (confirm)="confirmLogout()"
-    (cancelAction)="cancelLogout()">
-  </app-cerrar-sesion>
+  <!-- Modal de Cerrar Sesión -->
+  @if (showLogoutConfirm) {
+    <app-cerrar-sesion 
+      (confirm)="confirmLogout()" 
+      (cancelAction)="cancelLogout()">
+    </app-cerrar-sesion>
+  }
+  
 </div>

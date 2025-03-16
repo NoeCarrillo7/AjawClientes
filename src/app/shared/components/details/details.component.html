@@ -30,6 +30,10 @@
 
         <label>Tiempo Trabajado:</label>
         <input type="text" [value]="trabajo?.tiempoTrabajado" readonly>
+
+        <a [href]="trabajo?.publicLink" target="_blank" class="btn-link">
+            <button>Descargar reporte</button>
+        </a>
     </div>
 </div>
 

@@ -121,7 +121,8 @@ export class DetailsComponent implements OnInit {
           }),
           actualEnd: actualEnd?.toLocaleDateString() || "N/A",
           tiempoTrabajado,
-          actualStartDate: actualStart
+          actualStartDate: actualStart,
+          publicLink: job.publicLink
         };
       })
       .sort((a, b) => b.actualStartDate.getTime() - a.actualStartDate.getTime());

@@ -28,7 +28,7 @@
 
     checkUserRole() {
       const code = sessionStorage.getItem('clientCode');
-      const name = sessionStorage.getItem('clientName');  
+      const name = sessionStorage.getItem('clientName');
 
       if (code === '982647035') {  // Código del administrador
         this.isAdmin = true;

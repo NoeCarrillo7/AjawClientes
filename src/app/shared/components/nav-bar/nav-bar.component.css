@@ -1,3 +1,4 @@
+/* Estilos para pantallas grandes */
 .sidebar {
     width: 250px;
     height: 92vh;
@@ -8,12 +9,10 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 20px;
-
 }
 
 .sidebar.open {
     transform: translateX(0);
-    /* Mostrar menú */
     width: 45%;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -21,7 +20,7 @@
 
 .user-info {
     margin: 20px;
-    font-family: arial, sans-serif;
+    font-family: sans-serif;
     border-bottom: 1px solid #ccc;
     padding-bottom: 20%;
 }
@@ -86,21 +85,6 @@
     height: 15%;
 }
 
-.mode-toggle {
-    width: 100%;
-    height: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding: 10%;
-    font-size: 14px;
-    color: #d69f00;
-    background-color: #1a3c78;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .logout {
     height: 25%;
     display: flex;
@@ -125,12 +109,6 @@
     color: #ffffff;
 }
 
-.mode-toggle:hover {
-    background-color: #d69f00;
-    color: #ffffff;
-}
-
-
 footer {
     text-align: center;
     margin-top: 20px;
@@ -145,123 +123,64 @@ footer p {
     color: #ccc;
 }
 
-/* Imagen en pantallas pequeñas */
-.small-screen-image {
-    width: 100%;
-}
 
 .small-screen-image img {
-    width: 50%;
+    width: 23%;
+    padding: 2%;
 }
 
-.hamburger {
-    display: none;
-    position: fixed;
-    top: 30px;
-    left: 30px;
-    background-color: #1a3c78;
-    color: white;
-    border: none;
-    padding: 10px 10px;
-    font-size: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 9999;
-}
-
-/* Media Queries */
+/* Estilos para pantallas pequeñas */
 @media (max-width: 1024px) {
-    .hamburger {
-        display: block;
-    }
-
-    .sidebar {
-        width: 30%;
-        height: 50%;
-        margin: 0;
-        transform: translateX(-100%);
-        background-color: rgba(10, 30, 77, 0.8);
-        transition: transform 0.3s ease-in-out;
-        position: fixed;
-        z-index: 10;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .sidebar.open {
-        width: 35%;
-        height: 40%;
-    }
-
-    .small-screen-image {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
 
     .small-screen-image img {
-        width: 150px;
-    }
-
-    .nav-buttons button {
-        background-color: #0a1e4d00;
-        padding: 10%;
-        font-size: 20px;
-        margin-bottom: 5%;
-    }
-
-    .logout {
-        background-color: #0a1e4d00;
-        padding: 10%;
-        font-size: 20px;
-        margin-bottom: 5%;
-    }
-}
-
-@media (max-width: 780px) {
-    .sidebar {
-        height: 30%;
-    }
-
-    .sidebar.open {
         width: 40%;
-        height: 45%;
+        padding: 4%;
+    }
+    .sidebar {
+        display: none;
     }
 
-    .logout,
-    .mode-toggle {
-        font-size: 25px;
+    /* Contenedor de botones flotantes */
+    .small-screen-buttons {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        display: flex;
+        flex-direction: column;  /* 🔹 Alineación vertical */
+        gap: 12px;
+
+        z-index: 1000;
+    }
+
+    .small-screen-buttons button {
+        background: #BC891B;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+    }
+
+    .small-screen-buttons button:hover {
+        background: #8f6712;
+    }
+
+    .small-screen-buttons i {
+        font-size: 20px;
     }
 }
 
+/* Ajustes para pantallas aún más pequeñas */
 @media (max-width: 480px) {
-    .sidebar.open {
-        height: 50%;
-        width: 50%;
+    .small-screen-buttons button {
+        padding: 10px;
+        font-size: 18px;
     }
-
-    .nav-buttons button {
-        font-size: 17px;
-        margin-bottom: 5%;
-    }
-
-    .logout,
-    .mode-toggle {
-        font-size: 17px;
-    }
-
-    .hamburger {
-        padding: 10px 10px;
-        font-size: 20px;
-        top: 15px;
-        left: 15px;
-    }
-
     .small-screen-image img {
-        width: 80px;
-        /* Tamaño fijo */
-        height: auto;
-        /* Mantiene las proporciones */
+        width: 20%;
+        padding: 5%;
     }
-
 }
